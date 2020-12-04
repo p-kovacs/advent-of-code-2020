@@ -19,3 +19,15 @@ dependencies {
 test {
     useJUnitPlatform()
 }
+
+task run(type: JavaExec) {
+    main = getClassName(project.findProperty('day'))
+    classpath = sourceSets.main.runtimeClasspath
+}
+
+def getClassName(day) {
+    if (!day) {
+        return null
+    }
+    'pkovacs.aoc.Day' + (day.length() == 1 ? "0${day}" : day)
+}
