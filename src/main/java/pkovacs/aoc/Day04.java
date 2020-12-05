@@ -61,11 +61,11 @@ public class Day04 {
         valid &= (hgt.endsWith("cm") && checkInteger(hgt.substring(0, hgt.length() - 2), 150, 193))
                 || (hgt.endsWith("in") && checkInteger(hgt.substring(0, hgt.length() - 2), 59, 76));
         var hcl = fields.get("hcl");
-        valid &= Pattern.matches("#[0-9a-f][0-9a-f][0-9a-f][0-9a-f][0-9a-f][0-9a-f]", hcl);
+        valid &= Pattern.matches("#[0-9a-f]{6}", hcl);
         var ecl = fields.get("ecl");
         valid &= Arrays.stream("amb blu brn gry grn hzl oth".split(" ")).anyMatch(ecl::equals);
         var pid = fields.get("pid");
-        valid &= pid.length() == 9 && Pattern.matches("[0-9]*", pid);
+        valid &= Pattern.matches("[0-9]{9}", pid);
 
         return valid;
     }
