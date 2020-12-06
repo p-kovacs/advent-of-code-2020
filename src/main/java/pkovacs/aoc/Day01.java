@@ -3,10 +3,12 @@ package pkovacs.aoc;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+import pkovacs.aoc.util.AocUtils;
+
 public class Day01 {
 
     public static void main(String[] args) {
-        Scanner in = new Scanner(Day01.class.getResourceAsStream("day01.txt"));
+        Scanner in = AocUtils.scanFile("day01.txt");
         var list = new ArrayList<Integer>();
         while (in.hasNext()) {
             list.add(in.nextInt());

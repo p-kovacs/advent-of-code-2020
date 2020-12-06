@@ -1,16 +1,14 @@
 package pkovacs.aoc;
 
-import java.io.IOException;
-import java.nio.charset.StandardCharsets;
 import java.util.Arrays;
 import java.util.List;
 
-import org.apache.commons.io.IOUtils;
+import pkovacs.aoc.util.AocUtils;
 
 public class Day05 {
 
-    public static void main(String[] args) throws IOException {
-        List<String> lines = IOUtils.readLines(Day05.class.getResourceAsStream("day05.txt"), StandardCharsets.UTF_8);
+    public static void main(String[] args) {
+        List<String> lines = AocUtils.readLines("day05.txt");
 
         int[] seatIds = lines.stream().mapToInt(Day05::getSeatId).sorted().toArray();
 

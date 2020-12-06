@@ -1,23 +1,21 @@
 package pkovacs.aoc;
 
-import java.util.Scanner;
-
 import org.apache.commons.lang3.StringUtils;
+import pkovacs.aoc.util.AocUtils;
 
 public class Day02 {
 
     public static void main(String[] args) {
-        Scanner in = new Scanner(Day02.class.getResourceAsStream("day02.txt"));
-        in.useDelimiter("[ ,:\\n-]");
+        var lines = AocUtils.readLines("day02.txt");
 
         int cnt1 = 0;
         int cnt2 = 0;
-        while (in.hasNext()) {
-            int x = in.nextInt();
-            int y = in.nextInt();
-            char c = in.next().charAt(0);
-            in.next();
-            var pwd = in.next();
+        for (String line : lines) {
+            var values = AocUtils.scan(line, "%d-%d %c: %s");
+            int x = values.get(0).asInt();
+            int y = values.get(1).asInt();
+            char c = values.get(2).asChar();
+            var pwd = values.get(3).get();
             int m = StringUtils.countMatches(pwd, c);
             if (m >= x && m <= y) {
                 cnt1++;

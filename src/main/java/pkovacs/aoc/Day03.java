@@ -1,15 +1,13 @@
 package pkovacs.aoc;
 
-import java.io.IOException;
-import java.nio.charset.StandardCharsets;
 import java.util.List;
 
-import org.apache.commons.io.IOUtils;
+import pkovacs.aoc.util.AocUtils;
 
 public class Day03 {
 
-    public static void main(String[] args) throws IOException {
-        List<String> map = IOUtils.readLines(Day03.class.getResourceAsStream("day03.txt"), StandardCharsets.UTF_8);
+    public static void main(String[] args) {
+        List<String> map = AocUtils.readLines("day03.txt");
 
         System.out.println("Puzzle 1: " + solve(map, new int[] { 3 }, new int[] { 1 }));
         System.out.println("Puzzle 2: " + solve(map, new int[] { 1, 3, 5, 7, 1 }, new int[] { 1, 1, 1, 1, 2 }));
