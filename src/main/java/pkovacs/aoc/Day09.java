@@ -1,5 +1,6 @@
 package pkovacs.aoc;
 
+import java.util.Arrays;
 import java.util.List;
 import java.util.stream.IntStream;
 
@@ -35,12 +36,12 @@ public class Day09 {
     }
 
     private static long getMinMaxSum(long[] x, int i) {
-        for (int j = 0; j < i; j++) {
-            for (int k = j + 1; k < i; k++) {
-                long sum = IntStream.rangeClosed(j, k).mapToLong(a -> x[a]).sum();
+        for (int from = 0; from < i; from++) {
+            for (int to = from + 2; to <= i; to++) {
+                long sum = Arrays.stream(x, from, to).sum();
                 if (sum == x[i]) {
-                    return IntStream.rangeClosed(j, k).mapToLong(a -> x[a]).min().getAsLong()
-                            + IntStream.rangeClosed(j, k).mapToLong(a -> x[a]).max().getAsLong();
+                    return Arrays.stream(x, from, to).min().getAsLong()
+                            + Arrays.stream(x, from, to).max().getAsLong();
                 }
             }
         }

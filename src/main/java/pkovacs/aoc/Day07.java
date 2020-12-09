@@ -15,7 +15,7 @@ public class Day07 {
     public static void main(String[] args) {
         List<String> lines = AocUtils.readLines("day07.txt");
         runSolutionA(lines);
-        runSolutionB(lines);
+//        runSolutionB(lines);
     }
 
     /**
