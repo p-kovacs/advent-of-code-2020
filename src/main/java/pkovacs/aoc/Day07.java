@@ -83,13 +83,13 @@ public class Day07 {
         for (var line : lines) {
             var parts = AocUtils.scan(line, "%s bag.*contain %s");
             var color = parts.get(0).get();
-            var bag = bags.computeIfAbsent(color, c -> new Bag(c));
+            var bag = bags.computeIfAbsent(color, Bag::new);
             var contents = parts.get(1).get();
             if (!contents.startsWith("no other")) {
                 for (var content : contents.split(",")) {
                     var values = AocUtils.scan(content, " *%d %s bag.*");
                     var childColor = values.get(1).get();
-                    var childBag = bags.computeIfAbsent(childColor, c -> new Bag(c));
+                    var childBag = bags.computeIfAbsent(childColor, Bag::new);
                     bag.children.add(childBag);
                     bag.childrenCount.put(childColor, values.get(0).asInt());
                     childBag.parents.add(bag);

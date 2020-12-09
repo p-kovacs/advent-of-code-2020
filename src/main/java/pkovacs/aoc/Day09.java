@@ -26,7 +26,7 @@ public class Day09 {
     private static boolean isValid(long[] x, int i, int preambleSize) {
         for (int j = i - preambleSize; j < i; j++) {
             for (int k = j + 1; k < i; k++) {
-                if (x[i] == x[j] + x[k]) {
+                if (x[j] + x[k] == x[i]) {
                     return true;
                 }
             }
