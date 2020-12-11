@@ -62,6 +62,36 @@ public final class AocUtils {
     }
 
     /**
+     * Reads all lines of the given input file as a char matrix.
+     */
+    public static char[][] readCharMatrix(String fileName) {
+        var lines = readLines(fileName);
+        if (lines.isEmpty()) {
+            return new char[0][0];
+        }
+        char[][] matrix = new char[lines.size()][];
+        for (int i = 0; i < matrix.length; i++) {
+            matrix[i] = new char[lines.get(i).length()];
+            for (int j = 0; j < matrix[i].length; j++) {
+                matrix[i][j] = lines.get(i).charAt(j);
+            }
+        }
+        return matrix;
+    }
+
+    /**
+     * Returns a deep copy of the given char matrix.
+     */
+    public static char[][] deepCopyOf(char[][] matrix) {
+        char[][] newMatrix = new char[matrix.length][];
+        for (int i = 0; i < newMatrix.length; i++) {
+            newMatrix[i] = new char[matrix[i].length];
+            System.arraycopy(matrix[i], 0, newMatrix[i], 0, newMatrix[i].length);
+        }
+        return newMatrix;
+    }
+
+    /**
      * Returns a {@link Scanner} instance for the given string.
      */
     public static Scanner scan(String str) {
