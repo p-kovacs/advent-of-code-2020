@@ -14,7 +14,7 @@ public class Day11 {
     private static int solvePuzzle(char[][] seats, boolean second) {
         int n = seats.length;
         int m = seats[0].length;
-        int maxDist = second ? Math.max(n, m) : 1;
+        int maxDist = second ? Math.max(n - 1, m - 1) : 1;
         int maxOccupiedNeighbors = second ? 4 : 3;
 
         boolean change = true;
@@ -22,7 +22,7 @@ public class Day11 {
             change = false;
             char[][] newSeats = AocUtils.deepCopyOf(seats);
             for (int i = 0; i < n; i++) {
-                for (int j = 0; j < seats[i].length; j++) {
+                for (int j = 0; j < m; j++) {
                     int cnt = countOccupiedNeighbors(seats, i, j, maxDist);
                     if (seats[i][j] == 'L' && cnt == 0) {
                         newSeats[i][j] = '#';
@@ -56,6 +56,8 @@ public class Day11 {
                         } else if (seats[ni][nj] == 'L') {
                             break;
                         }
+                    } else {
+                        break;
                     }
                 }
             }
