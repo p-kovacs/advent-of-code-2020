@@ -33,6 +33,18 @@ public final class AocUtils {
     }
 
     /**
+     * Reads all lines as long integers from the given input file.
+     */
+    public static long[] readLongs(String fileName) {
+        var lines = readLines(fileName);
+        var array = new long[lines.size()];
+        for (int i = 0; i < array.length; i++) {
+            array[i] = Long.parseLong(lines.get(i));
+        }
+        return array;
+    }
+
+    /**
      * Reads blocks of lines, separated by blank line(s) from the given input file.
      */
     public static List<String[]> readLineBlocks(String fileName) {
@@ -62,17 +74,14 @@ public final class AocUtils {
     }
 
     /**
-     * Reads all lines of the given input file as a char matrix.
+     * Reads the lines of the given input file as a char matrix.
      */
     public static char[][] readCharMatrix(String fileName) {
         var lines = readLines(fileName);
-        if (lines.isEmpty()) {
-            return new char[0][0];
-        }
-        char[][] matrix = new char[lines.size()][];
-        for (int i = 0; i < matrix.length; i++) {
+        var matrix = new char[lines.size()][];
+        for (int i = 0, n = matrix.length; i < n; i++) {
             matrix[i] = new char[lines.get(i).length()];
-            for (int j = 0; j < matrix[i].length; j++) {
+            for (int j = 0, m = matrix[i].length; j < m; j++) {
                 matrix[i][j] = lines.get(i).charAt(j);
             }
         }
@@ -83,10 +92,10 @@ public final class AocUtils {
      * Returns a deep copy of the given char matrix.
      */
     public static char[][] deepCopyOf(char[][] matrix) {
-        char[][] newMatrix = new char[matrix.length][];
-        for (int i = 0; i < newMatrix.length; i++) {
+        var newMatrix = new char[matrix.length][];
+        for (int i = 0, n = matrix.length; i < n; i++) {
             newMatrix[i] = new char[matrix[i].length];
-            System.arraycopy(matrix[i], 0, newMatrix[i], 0, newMatrix[i].length);
+            System.arraycopy(matrix[i], 0, newMatrix[i], 0, matrix[i].length);
         }
         return newMatrix;
     }
