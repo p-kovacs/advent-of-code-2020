@@ -67,13 +67,6 @@ public final class AocUtils {
     }
 
     /**
-     * Returns a {@link Scanner} instance for the given input file.
-     */
-    public static Scanner scanFile(String fileName) {
-        return new Scanner(AocUtils.class.getResourceAsStream("../" + fileName), StandardCharsets.UTF_8);
-    }
-
-    /**
      * Reads the lines of the given input file as a char matrix.
      */
     public static char[][] readCharMatrix(String fileName) {
@@ -98,13 +91,6 @@ public final class AocUtils {
             System.arraycopy(matrix[i], 0, newMatrix[i], 0, matrix[i].length);
         }
         return newMatrix;
-    }
-
-    /**
-     * Returns a {@link Scanner} instance for the given string.
-     */
-    public static Scanner scan(String str) {
-        return new Scanner(str);
     }
 
     /**
