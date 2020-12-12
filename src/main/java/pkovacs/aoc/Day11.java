@@ -29,19 +29,19 @@ public class Day11 {
         }
 
         int solve() {
-            boolean change = true;
-            while (change) {
-                change = false;
+            boolean stable = false;
+            while (!stable) {
+                stable = true;
                 char[][] newSeats = AocUtils.deepCopyOf(seats);
                 for (int i = 0; i < n; i++) {
                     for (int j = 0; j < m; j++) {
                         int cnt = countOccupiedNeighbors(i, j);
                         if (seats[i][j] == 'L' && cnt == 0) {
                             newSeats[i][j] = '#';
-                            change = true;
+                            stable = false;
                         } else if (seats[i][j] == '#' && cnt > maxOccupiedNeighbors) {
                             newSeats[i][j] = 'L';
-                            change = true;
+                            stable = false;
                         }
                     }
                 }
