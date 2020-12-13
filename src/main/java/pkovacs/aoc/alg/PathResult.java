@@ -4,6 +4,9 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+/**
+ * Result object for general path search algorithms: {@link Bfs} and {@link ShortestPath}.
+ */
 public class PathResult<T> {
 
     private final T node;

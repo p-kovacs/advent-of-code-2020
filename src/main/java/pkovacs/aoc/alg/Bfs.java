@@ -37,21 +37,20 @@ public final class Bfs {
 
         var queue = new ArrayDeque<T>();
         for (T source : sources) {
-            boolean target = targetPredicate.test(source);
-            results.put(source, new PathResult<>(source, 0, target, null));
+            results.put(source, new PathResult<>(source, 0, targetPredicate.test(source), null));
             queue.add(source);
         }
 
         while (!queue.isEmpty()) {
             T node = queue.poll();
-            var front = results.get(node);
-            if (front.isTarget()) {
+            var result = results.get(node);
+            if (result.isTarget()) {
                 break;
             }
             for (T neighbor : neighborProvider.apply(node)) {
                 if (!results.containsKey(neighbor)) {
-                    results.put(neighbor, new PathResult<>(neighbor, front.getDist() + 1,
-                            targetPredicate.test(neighbor), front));
+                    results.put(neighbor, new PathResult<>(neighbor, result.getDist() + 1,
+                            targetPredicate.test(neighbor), result));
                     queue.add(neighbor);
                 }
             }

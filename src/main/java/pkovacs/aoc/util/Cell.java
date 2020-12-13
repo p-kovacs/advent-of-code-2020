@@ -19,6 +19,10 @@ public class Cell {
         this.col = col;
     }
 
+    public Cell move(int dr, int dc) {
+        return new Cell(row + dr, col + dc);
+    }
+
     public boolean isValid(int rowCount, int colCount) {
         return row >= 0 && row < rowCount && col >= 0 && col < colCount;
     }
@@ -41,6 +45,14 @@ public class Cell {
             }
         }
         return neighbors;
+    }
+
+    public int getManhattanDistance(Cell c) {
+        return getManhattanDistance(this, c);
+    }
+
+    public static int getManhattanDistance(Cell c1, Cell c2) {
+        return Math.abs(c1.row - c2.row) + Math.abs(c1.col - c2.col);
     }
 
     @Override
