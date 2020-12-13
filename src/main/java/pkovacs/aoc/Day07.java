@@ -8,12 +8,12 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
-import pkovacs.aoc.util.AocUtils;
+import pkovacs.aoc.util.InputUtils;
 
 public class Day07 {
 
     public static void main(String[] args) {
-        List<String> lines = AocUtils.readLines("day07.txt");
+        List<String> lines = InputUtils.readLines("day07.txt");
         runSolutionA(lines);
 //        runSolutionB(lines);
     }
@@ -26,14 +26,14 @@ public class Day07 {
         var revGraph = new HashMap<String, List<String>>();
         var count = new HashMap<String, Map<String, Integer>>();
         for (var line : lines) {
-            var parts = AocUtils.scan(line, "%s bag.*contain %s");
+            var parts = InputUtils.scan(line, "%s bag.*contain %s");
             var bag = parts.get(0).get();
             var contents = parts.get(1).get();
             if (contents.startsWith("no other")) {
                 continue;
             }
             for (var content : contents.split(",")) {
-                var values = AocUtils.scan(content, " *%d %s bag.*");
+                var values = InputUtils.scan(content, " *%d %s bag.*");
                 var innerBag = values.get(1).get();
                 graph.computeIfAbsent(bag, x -> new ArrayList<>()).add(innerBag);
                 revGraph.computeIfAbsent(innerBag, x -> new ArrayList<>()).add(bag);
@@ -81,13 +81,13 @@ public class Day07 {
     private static void runSolutionB(List<String> lines) {
         var bags = new HashMap<String, Bag>();
         for (var line : lines) {
-            var parts = AocUtils.scan(line, "%s bag.*contain %s");
+            var parts = InputUtils.scan(line, "%s bag.*contain %s");
             var color = parts.get(0).get();
             var bag = bags.computeIfAbsent(color, Bag::new);
             var contents = parts.get(1).get();
             if (!contents.startsWith("no other")) {
                 for (var content : contents.split(",")) {
-                    var values = AocUtils.scan(content, " *%d %s bag.*");
+                    var values = InputUtils.scan(content, " *%d %s bag.*");
                     var childColor = values.get(1).get();
                     var childBag = bags.computeIfAbsent(childColor, Bag::new);
                     bag.children.add(childBag);

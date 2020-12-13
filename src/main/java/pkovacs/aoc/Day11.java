@@ -1,11 +1,11 @@
 package pkovacs.aoc;
 
-import pkovacs.aoc.util.AocUtils;
+import pkovacs.aoc.util.InputUtils;
 
 public class Day11 {
 
     public static void main(String[] args) {
-        char[][] seats = AocUtils.readCharMatrix("day11.txt");
+        char[][] seats = InputUtils.readCharMatrix("day11.txt");
 
         System.out.println("Puzzle 1: " + new Puzzle(seats, false).solve());
         System.out.println("Puzzle 2: " + new Puzzle(seats, true).solve());
@@ -32,7 +32,7 @@ public class Day11 {
             boolean stable = false;
             while (!stable) {
                 stable = true;
-                char[][] newSeats = AocUtils.deepCopyOf(seats);
+                char[][] newSeats = InputUtils.deepCopyOf(seats);
                 for (int i = 0; i < n; i++) {
                     for (int j = 0; j < m; j++) {
                         int cnt = countOccupiedNeighbors(i, j);

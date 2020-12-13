@@ -1,17 +1,17 @@
 package pkovacs.aoc;
 
 import org.apache.commons.lang3.StringUtils;
-import pkovacs.aoc.util.AocUtils;
+import pkovacs.aoc.util.InputUtils;
 
 public class Day02 {
 
     public static void main(String[] args) {
-        var lines = AocUtils.readLines("day02.txt");
+        var lines = InputUtils.readLines("day02.txt");
 
         int cnt1 = 0;
         int cnt2 = 0;
         for (String line : lines) {
-            var values = AocUtils.scan(line, "%d-%d %c: %s");
+            var values = InputUtils.scan(line, "%d-%d %c: %s");
             int x = values.get(0).asInt();
             int y = values.get(1).asInt();
             char c = values.get(2).asChar();

@@ -4,12 +4,12 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.stream.IntStream;
 
-import pkovacs.aoc.util.AocUtils;
+import pkovacs.aoc.util.InputUtils;
 
 public class Day10 {
 
     public static void main(String[] args) {
-        List<String> lines = AocUtils.readLines("day10.txt");
+        List<String> lines = InputUtils.readLines("day10.txt");
 
         var x = new long[lines.size() + 2];
         for (int i = 0; i < lines.size(); i++) {

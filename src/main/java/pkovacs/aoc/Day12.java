@@ -2,13 +2,13 @@ package pkovacs.aoc;
 
 import java.util.List;
 
-import pkovacs.aoc.util.AocUtils;
+import pkovacs.aoc.util.InputUtils;
 import pkovacs.aoc.util.Vector;
 
 public class Day12 {
 
     public static void main(String[] args) {
-        List<String> lines = AocUtils.readLines("day12.txt");
+        List<String> lines = InputUtils.readLines("day12.txt");
 
         System.out.println("Puzzle 1: " + solvePuzzle(lines, false));
         System.out.println("Puzzle 2: " + solvePuzzle(lines, true));

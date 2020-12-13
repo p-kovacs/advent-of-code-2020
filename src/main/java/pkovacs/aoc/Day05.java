@@ -3,12 +3,12 @@ package pkovacs.aoc;
 import java.util.Arrays;
 import java.util.List;
 
-import pkovacs.aoc.util.AocUtils;
+import pkovacs.aoc.util.InputUtils;
 
 public class Day05 {
 
     public static void main(String[] args) {
-        List<String> lines = AocUtils.readLines("day05.txt");
+        List<String> lines = InputUtils.readLines("day05.txt");
 
         int[] seatIds = lines.stream().mapToInt(Day05::getSeatId).sorted().toArray();
 

@@ -5,12 +5,12 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
 
-import pkovacs.aoc.util.AocUtils;
+import pkovacs.aoc.util.InputUtils;
 
 public class Day04 {
 
     public static void main(String[] args) {
-        var blocks = AocUtils.readLineBlocks("day04.txt");
+        var blocks = InputUtils.readLineBlocks("day04.txt");
 
         int cnt1 = 0;
         int cnt2 = 0;

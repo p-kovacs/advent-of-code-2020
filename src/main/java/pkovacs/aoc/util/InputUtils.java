@@ -5,7 +5,6 @@ import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import java.util.Scanner;
 import java.util.regex.Pattern;
 
 import org.apache.commons.io.IOUtils;
@@ -13,11 +12,11 @@ import org.apache.commons.io.IOUtils;
 import static java.util.stream.Collectors.toList;
 
 /**
- * Provides simple utility methods for processing input files and solving the puzzles.
+ * Provides simple utility methods for processing puzzle input files.
  */
-public final class AocUtils {
+public final class InputUtils {
 
-    private AocUtils() {
+    private InputUtils() {
     }
 
     /**
@@ -25,7 +24,7 @@ public final class AocUtils {
      */
     public static List<String> readLines(String fileName) {
         try {
-            return IOUtils.readLines(AocUtils.class.getResourceAsStream("../" + fileName),
+            return IOUtils.readLines(InputUtils.class.getResourceAsStream("../" + fileName),
                     StandardCharsets.UTF_8);
         } catch (IOException e) {
             throw new IllegalArgumentException(e);
@@ -49,7 +48,7 @@ public final class AocUtils {
      */
     public static List<String[]> readLineBlocks(String fileName) {
         try {
-            var str = IOUtils.toString(AocUtils.class.getResourceAsStream("../" + fileName),
+            var str = IOUtils.toString(InputUtils.class.getResourceAsStream("../" + fileName),
                     StandardCharsets.UTF_8);
             return collectLineBlocks(str);
         } catch (IOException e) {

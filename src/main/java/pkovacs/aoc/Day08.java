@@ -4,12 +4,12 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-import pkovacs.aoc.util.AocUtils;
+import pkovacs.aoc.util.InputUtils;
 
 public class Day08 {
 
     public static void main(String[] args) {
-        List<String> lines = AocUtils.readLines("day08.txt");
+        List<String> lines = InputUtils.readLines("day08.txt");
 
         System.out.println("Puzzle 1: " + runCode(lines, true).get());
         System.out.println("Puzzle 2: " + solvePuzzle2(lines));
