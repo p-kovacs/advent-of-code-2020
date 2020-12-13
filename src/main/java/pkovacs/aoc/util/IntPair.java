@@ -7,12 +7,12 @@ import java.util.Objects;
  */
 public class IntPair {
 
-    public final int x;
-    public final int y;
+    public final int a;
+    public final int b;
 
-    public IntPair(int x, int y) {
-        this.x = x;
-        this.y = y;
+    public IntPair(int a, int b) {
+        this.a = a;
+        this.b = b;
     }
 
     @Override
@@ -21,17 +21,17 @@ public class IntPair {
             return false;
         }
         IntPair other = (IntPair) o;
-        return x == other.x && y == other.y;
+        return a == other.a && b == other.b;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(x, y);
+        return Objects.hash(a, b);
     }
 
     @Override
     public String toString() {
-        return "(" + x + "," + y + ")";
+        return "(" + a + "," + b + ")";
     }
 
 }

@@ -30,9 +30,9 @@ public class PairTest {
         assertNotEquals(p, q);
         assertEquals(q, r);
 
-        assertEquals(42, p.y);
-        assertEquals(p.x, q.y);
-        assertEquals(p.y, q.x);
+        assertEquals(42, p.b);
+        assertEquals(p.a, q.b);
+        assertEquals(p.b, q.a);
     }
 
     @Test
@@ -44,9 +44,9 @@ public class PairTest {
         assertNotEquals(p, q);
         assertEquals(q, r);
 
-        assertEquals(123456789000L, p.x);
-        assertEquals(p.x, q.y);
-        assertEquals(p.y, q.x);
+        assertEquals(123456789000L, p.a);
+        assertEquals(p.a, q.b);
+        assertEquals(p.b, q.a);
     }
 
 }

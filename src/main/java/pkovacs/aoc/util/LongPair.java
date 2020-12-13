@@ -7,12 +7,12 @@ import java.util.Objects;
  */
 public class LongPair {
 
-    public final long x;
-    public final long y;
+    public final long a;
+    public final long b;
 
-    public LongPair(long x, long y) {
-        this.x = x;
-        this.y = y;
+    public LongPair(long a, long b) {
+        this.a = a;
+        this.b = b;
     }
 
     @Override
@@ -21,17 +21,17 @@ public class LongPair {
             return false;
         }
         LongPair other = (LongPair) o;
-        return x == other.x && y == other.y;
+        return a == other.a && b == other.b;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(x, y);
+        return Objects.hash(a, b);
     }
 
     @Override
     public String toString() {
-        return "(" + x + "," + y + ")";
+        return "(" + a + "," + b + ")";
     }
 
 }
