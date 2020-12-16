@@ -15,6 +15,14 @@ public class LongPair {
         this.b = b;
     }
 
+    public long a() {
+        return a;
+    }
+
+    public long b() {
+        return b;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (o == null || getClass() != o.getClass()) {

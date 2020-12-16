@@ -15,6 +15,14 @@ public class IntPair {
         this.b = b;
     }
 
+    public int a() {
+        return a;
+    }
+
+    public int b() {
+        return b;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (o == null || getClass() != o.getClass()) {

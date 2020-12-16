@@ -15,6 +15,14 @@ public class Pair<A, B> {
         this.second = second;
     }
 
+    public A first() {
+        return first;
+    }
+
+    public B second() {
+        return second;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (o == null || getClass() != o.getClass()) {
