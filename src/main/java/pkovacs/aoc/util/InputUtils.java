@@ -31,15 +31,43 @@ public final class InputUtils {
     }
 
     /**
-     * Reads all lines as long integers from the given input file.
+     * Reads the given input file as an array of long integer values.
      */
     public static long[] readLongs(String fileName) {
-        var lines = readLines(fileName);
-        var array = new long[lines.size()];
-        for (int i = 0; i < array.length; i++) {
-            array[i] = Long.parseLong(lines.get(i));
+        try {
+            return scanLongs(Files.readString(getPath(fileName)));
+        } catch (IOException e) {
+            throw new IllegalArgumentException(e);
         }
-        return array;
+    }
+
+    /**
+     * Collects long integer values from the given string.
+     */
+    public static long[] scanLongs(String input) {
+        return Arrays.stream(input.split("[^\\d]+"))
+                .filter(s -> !s.isEmpty())
+                .mapToLong(Long::parseLong).toArray();
+    }
+
+    /**
+     * Reads the given input file as an array of integer values.
+     */
+    public static int[] readInts(String fileName) {
+        try {
+            return scanInts(Files.readString(getPath(fileName)));
+        } catch (IOException e) {
+            throw new IllegalArgumentException(e);
+        }
+    }
+
+    /**
+     * Collects integer values from the given string.
+     */
+    public static int[] scanInts(String input) {
+        return Arrays.stream(input.split("[^\\d]+"))
+                .filter(s -> !s.isEmpty())
+                .mapToInt(Integer::parseInt).toArray();
     }
 
     /**
@@ -55,10 +83,10 @@ public final class InputUtils {
     }
 
     /**
-     * Collects blocks of lines, separated by blank line(s) from the given string.
+     * Collects blocks of lines, separated by blank lines from the given string.
      */
-    public static List<String[]> collectLineBlocks(String data) {
-        return Arrays.stream(data.replaceAll("\r\n", "\n").split("\n\n"))
+    public static List<String[]> collectLineBlocks(String input) {
+        return Arrays.stream(input.replaceAll("\r\n", "\n").split("\n\n"))
                 .map(block -> block.split("\n"))
                 .collect(toList());
     }
