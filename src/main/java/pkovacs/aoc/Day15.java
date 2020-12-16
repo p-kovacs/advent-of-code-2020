@@ -1,15 +1,13 @@
 package pkovacs.aoc;
 
 import java.util.Arrays;
-import java.util.List;
 
 import pkovacs.aoc.util.InputUtils;
 
 public class Day15 {
 
     public static void main(String[] args) {
-        List<String> lines = InputUtils.readLines("day15.txt");
-        var numbers = Arrays.stream(lines.get(0).split(",")).mapToInt(Integer::parseInt).toArray();
+        var numbers = InputUtils.readInts("day15.txt");
 
         System.out.println("Puzzle 1: " + solve(numbers, 2020));
         System.out.println("Puzzle 2: " + solve(numbers, 30000000));

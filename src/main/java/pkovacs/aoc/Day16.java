@@ -1,6 +1,5 @@
 package pkovacs.aoc;
 
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
@@ -16,9 +15,8 @@ public class Day16 {
         // Read rules
         var rules = new HashMap<String, int[]>();
         for (var line : lines.get(0)) {
-            var s = InputUtils.scan(line, "%s: %d-%d or %d-%d");
-            rules.put(s.get(0).get(),
-                    new int[] { s.get(1).asInt(), s.get(2).asInt(), s.get(3).asInt(), s.get(4).asInt() });
+            var parts = line.split(":");
+            rules.put(parts[0], InputUtils.scanInts(parts[1]));
         }
 
         // Trick: replace "nearby tickets:" with my ticket's row (assuming it's valid)
@@ -29,7 +27,7 @@ public class Day16 {
         rules.keySet().forEach(rn -> invalidPos.put(rn, new HashSet<>()));
         long errorRate = 0;
         for (var line : lines.get(2)) {
-            long[] values = Arrays.stream(line.split(",")).mapToLong(Long::parseLong).toArray();
+            int[] values = InputUtils.scanInts(line);
 
             // Check validity
             boolean valid = true;
@@ -93,7 +91,7 @@ public class Day16 {
     }
 
     private static long getScoreForPart2(String ticket, Map<String, Integer> ruleIndex) {
-        long[] values = Arrays.stream(ticket.split(",")).mapToLong(Long::parseLong).toArray();
+        int[] values = InputUtils.scanInts(ticket);
         long mul = 1;
         for (var n : ruleIndex.keySet()) {
             if (n.startsWith("departure")) {
