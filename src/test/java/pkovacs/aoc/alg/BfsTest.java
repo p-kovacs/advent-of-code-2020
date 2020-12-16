@@ -1,11 +1,10 @@
 package pkovacs.aoc.alg;
 
-import java.io.IOException;
-import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
+import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.apache.commons.io.IOUtils;
 import org.junit.jupiter.api.Test;
 import pkovacs.aoc.util.Cell;
 import pkovacs.aoc.util.IntPair;
@@ -50,12 +49,11 @@ public class BfsTest {
     }
 
     @Test
-    public void testMaze() throws IOException {
+    public void testMaze() throws Exception {
         // We have to find the shortest path in a maze from the top left tile to the bottom right tile.
         // See maze1.txt, '#' represents a wall tile, '.' represents an empty tile.
 
-        var maze = IOUtils.readLines(getClass().getResourceAsStream("maze1.txt"),
-                StandardCharsets.UTF_8);
+        var maze = Files.readAllLines(Path.of(getClass().getResource("maze1.txt").toURI()));
         var start = new Cell(0, 0);
         var end = new Cell(9, 11);
 

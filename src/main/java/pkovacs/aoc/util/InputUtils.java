@@ -2,12 +2,12 @@ package pkovacs.aoc.util;
 
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
+import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.regex.Pattern;
-
-import org.apache.commons.io.IOUtils;
 
 import static java.util.stream.Collectors.toList;
 
@@ -24,8 +24,7 @@ public final class InputUtils {
      */
     public static List<String> readLines(String fileName) {
         try {
-            return IOUtils.readLines(InputUtils.class.getResourceAsStream("../" + fileName),
-                    StandardCharsets.UTF_8);
+            return Files.readAllLines(getPath(fileName), StandardCharsets.UTF_8);
         } catch (IOException e) {
             throw new IllegalArgumentException(e);
         }
@@ -48,8 +47,7 @@ public final class InputUtils {
      */
     public static List<String[]> readLineBlocks(String fileName) {
         try {
-            var str = IOUtils.toString(InputUtils.class.getResourceAsStream("../" + fileName),
-                    StandardCharsets.UTF_8);
+            var str = Files.readString(getPath(fileName), StandardCharsets.UTF_8);
             return collectLineBlocks(str);
         } catch (IOException e) {
             throw new IllegalArgumentException(e);
@@ -90,6 +88,10 @@ public final class InputUtils {
             System.arraycopy(matrix[i], 0, newMatrix[i], 0, matrix[i].length);
         }
         return newMatrix;
+    }
+
+    private static Path getPath(String fileName) {
+        return Path.of(InputUtils.class.getResource("../" + fileName).getPath());
     }
 
     /**
