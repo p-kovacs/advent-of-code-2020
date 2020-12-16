@@ -1,6 +1,5 @@
 package pkovacs.aoc;
 
-import org.apache.commons.lang3.StringUtils;
 import pkovacs.aoc.util.InputUtils;
 
 public class Day02 {
@@ -12,15 +11,15 @@ public class Day02 {
         int cnt2 = 0;
         for (String line : lines) {
             var values = InputUtils.scan(line, "%d-%d %c: %s");
-            int x = values.get(0).asInt();
-            int y = values.get(1).asInt();
-            char c = values.get(2).asChar();
+            int a = values.get(0).asInt();
+            int b = values.get(1).asInt();
+            char ch = values.get(2).asChar();
             var pwd = values.get(3).get();
-            int m = StringUtils.countMatches(pwd, c);
-            if (m >= x && m <= y) {
+            long m = pwd.chars().filter(c -> c == ch).count();
+            if (m >= a && m <= b) {
                 cnt1++;
             }
-            if ((pwd.charAt(x - 1) == c) ^ (pwd.charAt(y - 1) == c)) {
+            if ((pwd.charAt(a - 1) == ch) ^ (pwd.charAt(b - 1) == ch)) {
                 cnt2++;
             }
         }
