@@ -25,7 +25,7 @@ public class Day15 {
         }
 
         var current = numbers[numbers.length - 1];
-        for (int i = numbers.length - 1; i < stepCount - 1; i++) {
+        for (int i = numbers.length - 1, to = stepCount - 1; i < to; i++) {
             var index = pos[current];
             pos[current] = i;
             current = index < 0 ? 0 : i - index;
