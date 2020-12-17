@@ -106,18 +106,6 @@ public final class InputUtils {
         return matrix;
     }
 
-    /**
-     * Returns a deep copy of the given char matrix.
-     */
-    public static char[][] deepCopyOf(char[][] matrix) {
-        var newMatrix = new char[matrix.length][];
-        for (int i = 0, n = matrix.length; i < n; i++) {
-            newMatrix[i] = new char[matrix[i].length];
-            System.arraycopy(matrix[i], 0, newMatrix[i], 0, matrix[i].length);
-        }
-        return newMatrix;
-    }
-
     private static Path getPath(String fileName) {
         return Path.of(InputUtils.class.getResource("../" + fileName).getPath());
     }

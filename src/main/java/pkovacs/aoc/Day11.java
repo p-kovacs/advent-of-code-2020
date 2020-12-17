@@ -32,7 +32,7 @@ public class Day11 {
             boolean stable = false;
             while (!stable) {
                 stable = true;
-                char[][] newSeats = InputUtils.deepCopyOf(seats);
+                char[][] newSeats = new char[n][m];
                 for (int i = 0; i < n; i++) {
                     for (int j = 0; j < m; j++) {
                         int cnt = countOccupiedNeighbors(i, j);
@@ -42,6 +42,8 @@ public class Day11 {
                         } else if (seats[i][j] == '#' && cnt > maxOccupiedNeighbors) {
                             newSeats[i][j] = 'L';
                             stable = false;
+                        } else {
+                            newSeats[i][j] = seats[i][j];
                         }
                     }
                 }
