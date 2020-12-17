@@ -1,7 +1,11 @@
 package pkovacs.aoc.alg;
 
-import org.junit.jupiter.api.Test;
+import java.util.List;
 
+import org.junit.jupiter.api.Test;
+import pkovacs.aoc.alg.NumericalAlgorithms.Congruence;
+
+import static java.util.stream.Collectors.toList;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertThrows;
@@ -49,6 +53,50 @@ class NumericalAlgorithmsTest {
         assertEquals(15 * 42 / 3, NumericalAlgorithms.lcm(15, 42));
         assertEquals(1073676287L * 5189 * 7919 * 41,
                 NumericalAlgorithms.lcm(1073676287L * 5189, 1073676287L * 7919 * 41));
+    }
+
+    @Test
+    public void testCongruence() {
+        assertThrows(IllegalArgumentException.class, () -> new Congruence(0, 0));
+        assertThrows(IllegalArgumentException.class, () -> new Congruence(-1, 0));
+
+        var c1 = new Congruence(5, 2);
+        var c2 = new Congruence(5, 7);
+        var c3 = new Congruence(5, -3);
+        assertEquals(c1, c2);
+        assertEquals(c1, c3);
+
+        var list = List.of(new Congruence(5, 0),
+                new Congruence(123, 32),
+                new Congruence(11, 11));
+        assertEquals("[x % 123 == 32, x % 11 == 0, x % 5 == 0]",
+                list.stream().sorted().collect(toList()).toString());
+    }
+
+    @Test
+    public void testCrt() {
+        assertEquals(23, NumericalAlgorithms.solveCrt(
+                List.of(new Congruence(3, 2),
+                        new Congruence(5, 3),
+                        new Congruence(7, 2))));
+        assertEquals(39, NumericalAlgorithms.solveCrt(
+                List.of(new Congruence(3, 0),
+                        new Congruence(4, 3),
+                        new Congruence(5, 4))));
+        assertEquals(39, NumericalAlgorithms.solveCrt(
+                List.of(new Congruence(3, 0),
+                        new Congruence(4, 3),
+                        new Congruence(5, 4))));
+        assertEquals(560214575859998L, NumericalAlgorithms.solveCrt(
+                List.of(new Congruence(373, 323),
+                        new Congruence(367, 348),
+                        new Congruence(41, 32),
+                        new Congruence(37, 24),
+                        new Congruence(29, 10),
+                        new Congruence(23, 19),
+                        new Congruence(19, 0),
+                        new Congruence(17, 15),
+                        new Congruence(13, 7))));
     }
 
 }

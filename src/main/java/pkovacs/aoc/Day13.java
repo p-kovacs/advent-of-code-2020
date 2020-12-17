@@ -1,8 +1,13 @@
 package pkovacs.aoc;
 
 import java.util.List;
+import java.util.stream.IntStream;
 
+import pkovacs.aoc.alg.NumericalAlgorithms;
+import pkovacs.aoc.alg.NumericalAlgorithms.Congruence;
 import pkovacs.aoc.util.InputUtils;
+
+import static java.util.stream.Collectors.toList;
 
 public class Day13 {
 
@@ -42,16 +47,24 @@ public class Day13 {
     }
 
     /**
-     * Solves puzzle 2 of the day.
-     * We search for the smallest number x such that:
+     * Solves part 2 of the puzzle using {@link NumericalAlgorithms}. We search for the smallest number x such that:
      * for each i where n = buses[i] > -1: (x + i) % n == 0 (i.e. x and n - i are congruent modulo n)
-     * <p>
-     * In fact, we should apply an ancient theorem/algorithm:
-     * https://en.wikipedia.org/wiki/Chinese_remainder_theorem
-     * For this, the values buses[i] must be pairwise coprime, but I guess that they are prime numbers
-     * in everyone's input, so let's suppose this.
      */
     private static long findEarliestDepartureTime(long[] buses) {
+        var list = IntStream.range(0, buses.length)
+                .filter(i -> buses[i] > 0)
+                .mapToObj(i -> new Congruence(buses[i], -i))
+                .collect(toList());
+        return NumericalAlgorithms.solveCrt(list);
+    }
+
+    /**
+     * Solves part 2 of the puzzle directly. We search for the smallest number x such that:
+     * for each i where n = buses[i] > -1: (x + i) % n == 0 (i.e. x and n - i are congruent modulo n)
+     * A simple CRT (Chinese remainder theorem) algorithm is used, see:
+     * https://en.wikipedia.org/wiki/Chinese_remainder_theorem#Search_by_sieving
+     */
+    private static long findEarliestDepartureTimeOld(long[] buses) {
         long x = 0;
         long step = 1;
         for (int i = 0; i < buses.length; i++) {
