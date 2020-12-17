@@ -30,13 +30,8 @@ public class Day17 {
                 for (int y = 1; y < space[x].length - 1; y++) {
                     for (int z = 1; z < space[x][y].length - 1; z++) {
                         int nc = countActiveNeighbors(space, x, y, z);
-                        if (space[x][y][z] && nc != 2 && nc != 3) {
-                            newSpace[x][y][z] = false;
-                        } else if (!space[x][y][z] && nc == 3) {
-                            newSpace[x][y][z] = true;
-                        } else {
-                            newSpace[x][y][z] = space[x][y][z];
-                        }
+                        newSpace[x][y][z] = (space[x][y][z] && (nc == 2 || nc == 3))
+                                || (!space[x][y][z] && nc == 3);
                     }
                 }
             }
@@ -63,13 +58,8 @@ public class Day17 {
                     for (int z = 1; z < space[x][y].length - 1; z++) {
                         for (int w = 1; w < space[x][y][z].length - 1; w++) {
                             int nc = countActiveNeighbors(space, x, y, z, w);
-                            if (space[x][y][z][w] && nc != 2 && nc != 3) {
-                                newSpace[x][y][z][w] = false;
-                            } else if (!space[x][y][z][w] && nc == 3) {
-                                newSpace[x][y][z][w] = true;
-                            } else {
-                                newSpace[x][y][z][w] = space[x][y][z][w];
-                            }
+                            newSpace[x][y][z][w] = (space[x][y][z][w] && (nc == 2 || nc == 3))
+                                    || (!space[x][y][z][w] && nc == 3);
                         }
                     }
                 }
