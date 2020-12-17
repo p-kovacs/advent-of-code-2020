@@ -19,10 +19,6 @@ public class Cell {
         this.col = col;
     }
 
-    public Cell move(int dr, int dc) {
-        return new Cell(row + dr, col + dc);
-    }
-
     public boolean isValid(int rowCount, int colCount) {
         return row >= 0 && row < rowCount && col >= 0 && col < colCount;
     }
