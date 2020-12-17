@@ -10,8 +10,8 @@ public class Day12 {
     public static void main(String[] args) {
         List<String> lines = InputUtils.readLines("day12.txt");
 
-        System.out.println("Puzzle 1: " + solvePuzzle(lines, false));
-        System.out.println("Puzzle 2: " + solvePuzzle(lines, true));
+        System.out.println("Part 1: " + solvePuzzle(lines, false));
+        System.out.println("Part 2: " + solvePuzzle(lines, true));
     }
 
     private static long solvePuzzle(List<String> lines, boolean second) {

@@ -17,8 +17,8 @@ public class Day13 {
         long timestamp = Long.parseLong(lines.get(0));
         long[] buses = readBusArray(lines.get(1));
 
-        System.out.println("Puzzle 1: " + solvePuzzle1(buses, timestamp));
-        System.out.println("Puzzle 2: " + findEarliestDepartureTime(buses));
+        System.out.println("Part 1: " + solvePuzzle1(buses, timestamp));
+        System.out.println("Part 2: " + findEarliestDepartureTime(buses));
     }
 
     private static long[] readBusArray(String line) {

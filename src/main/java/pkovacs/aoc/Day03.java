@@ -7,8 +7,8 @@ public class Day03 {
     public static void main(String[] args) {
         char[][] map = InputUtils.readCharMatrix("day03.txt");
 
-        System.out.println("Puzzle 1: " + solve(map, new int[] { 3 }, new int[] { 1 }));
-        System.out.println("Puzzle 2: " + solve(map, new int[] { 1, 3, 5, 7, 1 }, new int[] { 1, 1, 1, 1, 2 }));
+        System.out.println("Part 1: " + solve(map, new int[] { 3 }, new int[] { 1 }));
+        System.out.println("Part 2: " + solve(map, new int[] { 1, 3, 5, 7, 1 }, new int[] { 1, 1, 1, 1, 2 }));
     }
 
     private static long solve(char[][] map, int[] right, int[] down) {

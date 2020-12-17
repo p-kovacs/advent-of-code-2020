@@ -15,8 +15,8 @@ public class Day09 {
                 .filter(i -> !isValid(x, i, preambleSize))
                 .findFirst().getAsInt();
 
-        System.out.println("Puzzle 1: " + x[index]);
-        System.out.println("Puzzle 2: " + getMinMaxSum(x, index));
+        System.out.println("Part 1: " + x[index]);
+        System.out.println("Part 2: " + getMinMaxSum(x, index));
     }
 
     private static boolean isValid(long[] x, int i, int preambleSize) {

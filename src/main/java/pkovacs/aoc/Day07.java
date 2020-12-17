@@ -54,8 +54,8 @@ public class Day07 {
                     return mul;
                 }).sum();
 
-        System.out.println("Puzzle 1: " + puzzle1);
-        System.out.println("Puzzle 2: " + puzzle2);
+        System.out.println("Part 1: " + puzzle1);
+        System.out.println("Part 2: " + puzzle2);
     }
 
     private static <T> List<List<T>> collectAllPaths(Map<T, List<T>> graph, T source) {
@@ -98,8 +98,8 @@ public class Day07 {
         }
 
         var s = "shiny gold";
-        System.out.println("Puzzle 1: " + bags.get(s).collectAncestorColors().size());
-        System.out.println("Puzzle 2: " + bags.get(s).countDescendants());
+        System.out.println("Part 1: " + bags.get(s).collectAncestorColors().size());
+        System.out.println("Part 2: " + bags.get(s).countDescendants());
     }
 
     private static class Bag {

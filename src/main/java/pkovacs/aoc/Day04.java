@@ -30,8 +30,8 @@ public class Day04 {
             }
         }
 
-        System.out.println("Puzzle 1: " + cnt1);
-        System.out.println("Puzzle 2: " + cnt2);
+        System.out.println("Part 1: " + cnt1);
+        System.out.println("Part 2: " + cnt2);
     }
 
     private static boolean isValid(Map<String, String> fields, boolean checkValues) {

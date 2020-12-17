@@ -11,8 +11,8 @@ public class Day08 {
     public static void main(String[] args) {
         List<String> lines = InputUtils.readLines("day08.txt");
 
-        System.out.println("Puzzle 1: " + runCode(lines, true).get());
-        System.out.println("Puzzle 2: " + solvePuzzle2(lines));
+        System.out.println("Part 1: " + runCode(lines, true).get());
+        System.out.println("Part 2: " + solvePuzzle2(lines));
     }
 
     private static long solvePuzzle2(List<String> origLines) {

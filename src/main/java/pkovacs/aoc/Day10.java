@@ -19,8 +19,8 @@ public class Day10 {
         x[lines.size() + 1] = Arrays.stream(x).max().getAsLong() + 3;
         Arrays.sort(x);
 
-        System.out.println("Puzzle 1: " + countDiff(x, 1) * countDiff(x, 3));
-        System.out.println("Puzzle 2: " + getPathCount(x));
+        System.out.println("Part 1: " + countDiff(x, 1) * countDiff(x, 3));
+        System.out.println("Part 2: " + getPathCount(x));
     }
 
     private static long countDiff(long[] x, long diff) {

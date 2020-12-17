@@ -7,8 +7,8 @@ public class Day11 {
     public static void main(String[] args) {
         char[][] seats = InputUtils.readCharMatrix("day11.txt");
 
-        System.out.println("Puzzle 1: " + new Puzzle(seats, false).solve());
-        System.out.println("Puzzle 2: " + new Puzzle(seats, true).solve());
+        System.out.println("Part 1: " + new Puzzle(seats, false).solve());
+        System.out.println("Part 2: " + new Puzzle(seats, true).solve());
     }
 
     private static class Puzzle {

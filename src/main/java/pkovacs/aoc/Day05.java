@@ -12,8 +12,8 @@ public class Day05 {
 
         int[] seatIds = lines.stream().mapToInt(Day05::getSeatId).sorted().toArray();
 
-        System.out.println("Puzzle 1: " + Arrays.stream(seatIds).max().getAsInt());
-        System.out.println("Puzzle 2: " + findHole(seatIds));
+        System.out.println("Part 1: " + Arrays.stream(seatIds).max().getAsInt());
+        System.out.println("Part 2: " + findHole(seatIds));
     }
 
     private static int getSeatId(String s) {

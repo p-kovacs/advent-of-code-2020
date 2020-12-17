@@ -9,8 +9,8 @@ public class Day15 {
     public static void main(String[] args) {
         var numbers = InputUtils.readInts("day15.txt");
 
-        System.out.println("Puzzle 1: " + solve(numbers, 2020));
-        System.out.println("Puzzle 2: " + solve(numbers, 30000000));
+        System.out.println("Part 1: " + solve(numbers, 2020));
+        System.out.println("Part 2: " + solve(numbers, 30000000));
     }
 
     private static long solve(int[] numbers, int stepCount) {

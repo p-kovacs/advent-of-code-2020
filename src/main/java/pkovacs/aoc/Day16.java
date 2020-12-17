@@ -69,8 +69,8 @@ public class Day16 {
             }
         }
 
-        System.out.println("Puzzle 1: " + errorRate);
-        System.out.println("Puzzle 2: " + getScoreForPart2(lines.get(1)[1], ruleIndex));
+        System.out.println("Part 1: " + errorRate);
+        System.out.println("Part 2: " + getScoreForPart2(lines.get(1)[1], ruleIndex));
     }
 
     private static boolean isValid(long value, Map<String, int[]> rules) {

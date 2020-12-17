@@ -22,8 +22,8 @@ public class Day06 {
             sum2 += map.values().stream().filter(cnt -> cnt == block.length).count();
         }
 
-        System.out.println("Puzzle 1: " + sum1);
-        System.out.println("Puzzle 2: " + sum2);
+        System.out.println("Part 1: " + sum1);
+        System.out.println("Part 2: " + sum2);
     }
 
 }

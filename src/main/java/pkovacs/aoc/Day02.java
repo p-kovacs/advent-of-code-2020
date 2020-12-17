@@ -24,8 +24,8 @@ public class Day02 {
             }
         }
 
-        System.out.println("Puzzle 1: " + cnt1);
-        System.out.println("Puzzle 2: " + cnt2);
+        System.out.println("Part 1: " + cnt1);
+        System.out.println("Part 2: " + cnt2);
     }
 
 }
