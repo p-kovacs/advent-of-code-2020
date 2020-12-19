@@ -23,11 +23,11 @@ public class Day19 {
             }
         }
 
-        // Add special rule "0+" for solving part 2.
-        // Rule 8 can be transformed to "(42)+", but rule 11 describes a type 2 grammar, it cannot be
-        // represented with a RegEx, so we iterate the "infinite loop" up to a certain limit.
-        // maxLineLength / 2 is a sufficient limit, because every rule eventually describes at least
-        // one character.
+        // Add special rule "0+" for solving part 2, exploiting that rule 0 is "8 11", and rules 8 and 11 are
+        // not used elsewhere. For Part 2, rule 8 can be transformed to "(42)+". However, rule 11 describes a
+        // type 2 grammar, it cannot be represented with a RegEx generally, only up to a certain length limit.
+        // Since every rule eventually describes at least one character, it is sufficient to apply the recursive
+        // definition of rule 11 at most maxLineLength/2 times.
         int limit = Arrays.stream(blocks.get(1)).mapToInt(String::length).max().getAsInt() / 2;
         rules.put("0+", "(42)+ 42 31");
         for (int i = 2; i <= limit; i++) {
