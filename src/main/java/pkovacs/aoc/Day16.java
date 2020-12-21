@@ -1,10 +1,12 @@
 package pkovacs.aoc;
 
+import java.util.Arrays;
 import java.util.HashMap;
-import java.util.HashSet;
 import java.util.Map;
-import java.util.Set;
+import java.util.stream.IntStream;
 
+import com.google.common.collect.MultimapBuilder;
+import com.google.common.collect.SetMultimap;
 import pkovacs.aoc.util.InputUtils;
 
 public class Day16 {
@@ -18,55 +20,54 @@ public class Day16 {
             var parts = line.split(":");
             rules.put(parts[0], InputUtils.scanInts(parts[1]));
         }
+        var ruleCount = rules.keySet().size();
 
         // Trick: replace "nearby tickets:" with my ticket's row (assuming it's valid)
         lines.get(2)[0] = lines.get(1)[1];
 
-        // Check all tickets
-        var invalidPos = new HashMap<String, Set<Integer>>();
-        rules.keySet().forEach(rn -> invalidPos.put(rn, new HashSet<>()));
+        // Process tickets
         long errorRate = 0;
+        SetMultimap<String, Integer> invalid = MultimapBuilder.hashKeys().hashSetValues().build();
         for (var line : lines.get(2)) {
             int[] values = InputUtils.scanInts(line);
 
             // Check validity
-            boolean valid = true;
-            for (long value : values) {
-                if (!isValid(value, rules)) {
-                    errorRate += value;
-                    valid = false;
-                }
-            }
-            if (!valid) {
+            int err = Arrays.stream(values).filter(v -> !isValid(v, rules)).sum();
+            if (err > 0) {
+                errorRate += err;
                 continue;
             }
 
             // Collect the invalid positions for rules
             for (int i = 0; i < values.length; i++) {
-                for (var rn : rules.keySet()) {
-                    if (!isValid(values[i], rules.get(rn))) {
-                        invalidPos.get(rn).add(i);
+                for (var k : rules.keySet()) {
+                    if (!isValid(values[i], rules.get(k))) {
+                        invalid.put(k, i);
                     }
                 }
             }
         }
 
-        // Assign rules to positions (assuming that it is unambiguous for each rule)
-        var ruleCount = rules.keySet().size();
+        // Collect potentially valid indices
+        SetMultimap<String, Integer> canBeValid = MultimapBuilder.hashKeys().hashSetValues().build();
+        for (var k : rules.keySet()) {
+            IntStream.range(0, ruleCount)
+                    .filter(i -> !invalid.containsEntry(k, i))
+                    .forEach(i -> canBeValid.put(k, i));
+        }
+
+        // Assign rules to indices with greedy method
         var ruleIndex = new HashMap<String, Integer>();
-        var toAssign = new HashSet<>(rules.keySet());
-        while (!toAssign.isEmpty()) {
-            for (var rn : toAssign) {
-                var invalids = invalidPos.get(rn);
-                if (invalids.size() == ruleCount - 1) {
-                    int i = getAbsentValue(invalids, ruleCount);
-                    ruleIndex.put(rn, i);
-                    invalidPos.values().forEach(set -> set.add(i));
-                }
-            }
-            if (!toAssign.removeAll(ruleIndex.keySet())) {
+        while (!canBeValid.isEmpty()) {
+            var next = canBeValid.keySet().stream()
+                    .filter(k -> canBeValid.get(k).size() == 1).findAny();
+            if (next.isEmpty()) {
                 throw new RuntimeException("Greedy assignment failed.");
             }
+
+            int i = canBeValid.get(next.get()).iterator().next();
+            ruleIndex.put(next.get(), i);
+            canBeValid.entries().removeIf(e -> e.getValue() == i);
         }
 
         System.out.println("Part 1: " + errorRate);
@@ -79,15 +80,6 @@ public class Day16 {
 
     private static boolean isValid(long value, int[] rule) {
         return (value >= rule[0] && value <= rule[1]) || (value >= rule[2] && value <= rule[3]);
-    }
-
-    private static int getAbsentValue(Set<Integer> set, int maxValue) {
-        for (int i = 0; i < maxValue; i++) {
-            if (!set.contains(i)) {
-                return i;
-            }
-        }
-        throw new IllegalArgumentException();
     }
 
     private static long getScoreForPart2(String ticket, Map<String, Integer> ruleIndex) {
