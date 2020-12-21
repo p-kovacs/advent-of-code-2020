@@ -1,10 +1,10 @@
 package pkovacs.aoc;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 
 import pkovacs.aoc.util.InputUtils;
+import pkovacs.aoc.util.LongMap;
 
 public class Day14 {
 
@@ -17,7 +17,7 @@ public class Day14 {
 
     private static long solvePuzzle(List<String> lines, boolean second) {
         var mask = "";
-        var mem = new HashMap<Long, Long>();
+        var mem = new LongMap<Long>();
         for (String line : lines) {
             if (line.startsWith("mask")) {
                 mask = line.split(" = ")[1];
@@ -57,7 +57,7 @@ public class Day14 {
             }
         }
 
-        return mem.values().stream().mapToLong(a -> a).sum();
+        return mem.sum();
     }
 
     private static long setBit(long value, int bitPos, boolean bit) {

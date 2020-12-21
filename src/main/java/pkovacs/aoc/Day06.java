@@ -1,8 +1,7 @@
 package pkovacs.aoc;
 
-import java.util.HashMap;
-
 import pkovacs.aoc.util.InputUtils;
+import pkovacs.aoc.util.LongMap;
 
 public class Day06 {
 
@@ -12,14 +11,14 @@ public class Day06 {
         long sum1 = 0;
         long sum2 = 0;
         for (var block : blocks) {
-            var map = new HashMap<Byte, Integer>();
+            var map = new LongMap<Byte>();
             for (String line : block) {
                 for (byte b : line.getBytes()) {
-                    map.put(b, map.computeIfAbsent(b, x -> 0) + 1);
+                    map.incrementAndGet(b);
                 }
             }
             sum1 += map.size();
-            sum2 += map.values().stream().filter(cnt -> cnt == block.length).count();
+            sum2 += map.count(block.length);
         }
 
         System.out.println("Part 1: " + sum1);
