@@ -1,30 +1,23 @@
 package pkovacs.aoc;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Map;
 import java.util.Set;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
+import com.google.common.collect.ListMultimap;
+import com.google.common.collect.Multimap;
+import com.google.common.collect.MultimapBuilder;
+import com.google.common.collect.SetMultimap;
 import pkovacs.aoc.util.InputUtils;
 
 public class Day07 {
 
     public static void main(String[] args) {
         List<String> lines = InputUtils.readLines("day07.txt");
-        runSolutionA(lines);
-//        runSolutionB(lines);
-    }
 
-    /**
-     * My original approach (after some refactoring).
-     */
-    private static void runSolutionA(List<String> lines) {
-        var graph = new HashMap<String, List<String>>();
-        var revGraph = new HashMap<String, List<String>>();
-        var count = new HashMap<String, Map<String, Integer>>();
+        ListMultimap<String, String> tree = MultimapBuilder.hashKeys().arrayListValues().build();
+        SetMultimap<String, String> revTree = MultimapBuilder.hashKeys().hashSetValues().build();
         for (var line : lines) {
             var parts = InputUtils.scan(line, "%s bag.*contain %s");
             var bag = parts.get(0).get();
@@ -35,97 +28,26 @@ public class Day07 {
             for (var content : contents.split(",")) {
                 var values = InputUtils.scan(content, " *%d %s bag.*");
                 var innerBag = values.get(1).get();
-                graph.computeIfAbsent(bag, x -> new ArrayList<>()).add(innerBag);
-                revGraph.computeIfAbsent(innerBag, x -> new ArrayList<>()).add(bag);
-                count.computeIfAbsent(bag, x -> new HashMap<>()).put(innerBag, values.get(0).asInt());
-            }
-        }
-
-        var s = "shiny gold";
-        long puzzle1 = collectAllPaths(revGraph, s).stream()
-                .map(list -> list.get(list.size() - 1))
-                .distinct().count();
-        long puzzle2 = collectAllPaths(graph, s).stream()
-                .mapToLong(list -> {
-                    long mul = 1;
-                    for (int i = 0; i < list.size() - 1; i++) {
-                        mul *= count.get(list.get(i)).get(list.get(i + 1));
-                    }
-                    return mul;
-                }).sum();
-
-        System.out.println("Part 1: " + puzzle1);
-        System.out.println("Part 2: " + puzzle2);
-    }
-
-    private static <T> List<List<T>> collectAllPaths(Map<T, List<T>> graph, T source) {
-        var results = new ArrayList<List<T>>();
-
-        results.add(Collections.singletonList(source));
-        for (int i = 0; i < results.size(); i++) {
-            var path = results.get(i);
-            T front = path.get(path.size() - 1);
-            for (T next : graph.getOrDefault(front, Collections.emptyList())) {
-                var nextPath = new ArrayList<T>(path);
-                nextPath.add(next);
-                results.add(nextPath);
-            }
-        }
-
-        return results.subList(1, results.size()); // skip first path (to source)
-    }
-
-    /**
-     * An alternative approach, influenced by the solution of a co-worker.
-     */
-    private static void runSolutionB(List<String> lines) {
-        var bags = new HashMap<String, Bag>();
-        for (var line : lines) {
-            var parts = InputUtils.scan(line, "%s bag.*contain %s");
-            var color = parts.get(0).get();
-            var bag = bags.computeIfAbsent(color, Bag::new);
-            var contents = parts.get(1).get();
-            if (!contents.startsWith("no other")) {
-                for (var content : contents.split(",")) {
-                    var values = InputUtils.scan(content, " *%d %s bag.*");
-                    var childColor = values.get(1).get();
-                    var childBag = bags.computeIfAbsent(childColor, Bag::new);
-                    bag.children.add(childBag);
-                    bag.childrenCount.put(childColor, values.get(0).asInt());
-                    childBag.parents.add(bag);
+                for (int i = 0, cnt = values.get(0).asInt(); i < cnt; i++) {
+                    tree.put(bag, innerBag);
+                    revTree.put(innerBag, bag);
                 }
             }
         }
 
         var s = "shiny gold";
-        System.out.println("Part 1: " + bags.get(s).collectAncestorColors().size());
-        System.out.println("Part 2: " + bags.get(s).countDescendants());
+        System.out.println("Part 1: " + collectDescendantColors(revTree, s).size());
+        System.out.println("Part 2: " + countDescendants(tree, s));
     }
 
-    private static class Bag {
+    private static Set<String> collectDescendantColors(Multimap<String, String> tree, String node) {
+        return tree.get(node).stream()
+                .flatMap(n -> Stream.concat(Stream.of(n), collectDescendantColors(tree, n).stream()))
+                .collect(Collectors.toSet());
+    }
 
-        final String color;
-        final List<Bag> parents = new ArrayList<>();
-        final List<Bag> children = new ArrayList<>();
-        final Map<String, Integer> childrenCount = new HashMap<>();
-
-        Bag(String color) {
-            this.color = color;
-        }
-
-        Set<String> collectAncestorColors() {
-            var result = new HashSet<String>();
-            parents.forEach(b -> {
-                result.add(b.color);
-                result.addAll(b.collectAncestorColors());
-            });
-            return result;
-        }
-
-        long countDescendants() {
-            return children.stream().mapToLong(c -> childrenCount.get(c.color) * (1 + c.countDescendants())).sum();
-        }
-
+    private static long countDescendants(Multimap<String, String> tree, String node) {
+        return tree.get(node).stream().mapToLong(n -> 1 + countDescendants(tree, n)).sum();
     }
 
 }
