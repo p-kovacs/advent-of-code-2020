@@ -23,19 +23,19 @@ abstract class DayTestBase {
         System.setOut(origOut);
     }
 
-    void assertSolution1(long expected) {
+    void assertSolution1(String expected) {
         assertSolution(1, expected);
 
     }
 
-    void assertSolution2(long expected) {
+    void assertSolution2(String expected) {
         assertSolution(2, expected);
     }
 
-    private void assertSolution(int puzzle, long expected) {
+    private void assertSolution(int puzzle, String expected) {
         var output = outputStream.toString(StandardCharsets.UTF_8);
         var parts = output.split(System.lineSeparator())[puzzle - 1].split(": ");
-        long value = parts.length < 2 ? 0 : Long.parseLong(parts[1]);
+        var value = parts.length < 2 ? "" : parts[1].trim();
         Assertions.assertEquals(expected, value);
     }
 
