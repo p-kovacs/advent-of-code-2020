@@ -7,12 +7,12 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map.Entry;
 import java.util.Set;
-import java.util.stream.Collectors;
 
 import com.google.common.collect.MultimapBuilder;
 import com.google.common.collect.SetMultimap;
 import pkovacs.aoc.util.InputUtils;
 
+import static java.util.stream.Collectors.joining;
 import static java.util.stream.Collectors.toSet;
 
 public class Day21 {
@@ -70,7 +70,7 @@ public class Day21 {
         var solution2 = contains.entrySet().stream()
                 .sorted(Entry.comparingByValue())
                 .map(Entry::getKey)
-                .collect(Collectors.joining(","));
+                .collect(joining(","));
 
         System.out.println("Part 1: " + solution1);
         System.out.println("Part 2: " + solution2);
