@@ -46,43 +46,34 @@ public class Day23 {
             max = 1_000_000;
         }
 
-        // Build data structures. (Each value remains at the same position in values array, but their order is
-        // stored as a linked list using the next array, and a reverse lookup map is also stored in index array.)
-        int[] values = Ints.toArray(list);
-        int[] next = new int[n];
-        int[] index = new int[n + 1];
+        // Build linked list from the values
+        int[] next = new int[n + 1];
         for (int i = 0; i < n; i++) {
-            next[i] = i == n - 1 ? 0 : i + 1;
-            index[values[i]] = i;
+            next[list.get(i)] = list.get(i == n - 1 ? 0 : i + 1);
         }
 
         // Play the moves
-        for (int move = 0, current = 0; move < moveCount; move++, current = next[current]) {
-            // Select indices to pick up
+        for (int move = 0, current = list.get(0); move < moveCount; move++, current = next[current]) {
             int pu1 = next[current];
             int pu2 = next[pu1];
             int pu3 = next[pu2];
 
-            // Select destination value an index
-            int currentValue = values[current];
-            int dest = currentValue;
-            while (dest == currentValue || dest == values[pu1] || dest == values[pu2] || dest == values[pu3]) {
+            int dest = current;
+            while (dest == current || dest == pu1 || dest == pu2 || dest == pu3) {
                 if (--dest < 1) {
                     dest = max;
                 }
             }
-            int destIndex = index[dest];
 
-            // Update list
             next[current] = next[pu3];
-            next[pu3] = next[destIndex];
-            next[destIndex] = pu1;
+            next[pu3] = next[dest];
+            next[dest] = pu1;
         }
 
         // Construct result list: the first few values next to 1
         List<Integer> result = new ArrayList<>();
-        for (int i = next[index[1]]; result.size() < input.size() - 1; i = next[i]) {
-            result.add(values[i]);
+        for (int i = next[1]; result.size() < input.size() - 1; i = next[i]) {
+            result.add(i);
         }
         return result;
     }

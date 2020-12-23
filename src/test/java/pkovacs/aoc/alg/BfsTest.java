@@ -74,4 +74,21 @@ public class BfsTest {
         assertEquals(end, path.get(path.size() - 1));
     }
 
+    @Test
+    public void testWithInfiniteGraph() {
+        var result1 = Bfs.run(0, i -> List.of(i + 1, 2 * i), i -> i == 128);
+        var result2 = Bfs.run(0, i -> List.of(i + 1, 2 * i), i -> i == 127);
+        var result3 = Bfs.run(0, i -> List.of(i + 1, 2 * i), i -> i == 42);
+        var result4 = Bfs.run(0, i -> List.of(i + 1, 2 * i), i -> i == 137);
+
+        assertTrue(result1.isPresent());
+        assertTrue(result2.isPresent());
+        assertTrue(result3.isPresent());
+        assertTrue(result4.isPresent());
+        assertEquals(List.of(0, 1, 2, 4, 8, 16, 32, 64, 128), result1.get().getPath());
+        assertEquals(List.of(0, 1, 2, 3, 6, 7, 14, 15, 30, 31, 62, 63, 126, 127), result2.get().getPath());
+        assertEquals(List.of(0, 1, 2, 4, 5, 10, 20, 21, 42), result3.get().getPath());
+        assertEquals(List.of(0, 1, 2, 4, 8, 16, 17, 34, 68, 136, 137), result4.get().getPath());
+    }
+
 }
