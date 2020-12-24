@@ -6,8 +6,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.junit.jupiter.api.Test;
-import pkovacs.aoc.util.Cell;
 import pkovacs.aoc.util.IntPair;
+import pkovacs.aoc.util.Tile;
 
 import static java.util.stream.Collectors.toList;
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -54,8 +54,8 @@ public class BfsTest {
         // See maze1.txt, '#' represents a wall tile, '.' represents an empty tile.
 
         var maze = Files.readAllLines(Path.of(getClass().getResource("maze1.txt").toURI()));
-        var start = new Cell(0, 0);
-        var end = new Cell(9, 11);
+        var start = new Tile(0, 0);
+        var end = new Tile(9, 11);
 
         var result = Bfs.run(start,
                 cell -> cell.getFourNeighbors().stream()

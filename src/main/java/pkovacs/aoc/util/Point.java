@@ -8,7 +8,7 @@ import com.google.common.math.LongMath;
 
 /**
  * Represents a point in D-dimensional (D >= 1) space with integer coordinates and Manhattan distance.
- * This class is a D-dimensional generalization of {@link Cell}.
+ * This class is a D-dimensional generalization of {@link Tile}.
  */
 public class Point {
 

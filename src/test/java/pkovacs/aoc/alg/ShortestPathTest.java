@@ -1,14 +1,12 @@
 package pkovacs.aoc.alg;
 
-import java.io.IOException;
-import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.List;
 
 import org.junit.jupiter.api.Test;
-import pkovacs.aoc.util.Cell;
 import pkovacs.aoc.util.Pair;
+import pkovacs.aoc.util.Tile;
 
 import static java.util.stream.Collectors.toList;
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -25,8 +23,8 @@ public class ShortestPathTest {
         // See maze2.txt, '#' represents a wall tile, '.' represents an empty tile.
 
         var maze = Files.readAllLines(Path.of(getClass().getResource("maze2.txt").toURI()));
-        var start = new Cell(0, 0);
-        var end = new Cell(9, 11);
+        var start = new Tile(0, 0);
+        var end = new Tile(9, 11);
 
         // Find path with large detonationTime --> same as BFS
         long detonationTime = 32;
@@ -51,7 +49,7 @@ public class ShortestPathTest {
         assertEquals(start.getManhattanDistance(end), result.getDist());
     }
 
-    private static PathResult<Cell> findPathInMazeBfs(List<String> maze, Cell start, Cell end) {
+    private static PathResult<Tile> findPathInMazeBfs(List<String> maze, Tile start, Tile end) {
         var result = Bfs.run(start,
                 pos -> pos.getFourNeighbors().stream()
                         .filter(p -> p.isValid(maze.size(), maze.get(0).length()))
@@ -63,8 +61,8 @@ public class ShortestPathTest {
         return result.get();
     }
 
-    private static PathResult<Cell> findPathInMazeSp(List<String> maze, Cell start,
-            Cell end, long detonationTime) {
+    private static PathResult<Tile> findPathInMazeSp(List<String> maze, Tile start,
+            Tile end, long detonationTime) {
         var result = ShortestPath.find(start,
                 pos -> pos.getFourNeighbors().stream()
                         .filter(p -> p.isValid(maze.size(), maze.get(0).length()))

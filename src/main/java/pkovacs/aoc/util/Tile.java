@@ -6,15 +6,15 @@ import java.util.Objects;
 import java.util.function.BiPredicate;
 
 /**
- * Represents a cell (position) in a table or matrix as an immutable pair of int values:
+ * Represents a tile (cell) in a table or matrix as an immutable pair of int values:
  * row index and column index.
  */
-public class Cell {
+public class Tile {
 
     public final int row;
     public final int col;
 
-    public Cell(int row, int col) {
+    public Tile(int row, int col) {
         this.row = row;
         this.col = col;
     }
@@ -23,31 +23,35 @@ public class Cell {
         return row >= 0 && row < rowCount && col >= 0 && col < colCount;
     }
 
-    public List<Cell> getFourNeighbors() {
+    public List<Tile> getFourNeighbors() {
         return getNeighbors((r, c) -> r != row ^ c != col);
     }
 
-    public List<Cell> getEightNeighbors() {
+    public List<Tile> getEightNeighbors() {
         return getNeighbors((r, c) -> r != row || c != col);
     }
 
-    private List<Cell> getNeighbors(BiPredicate<Integer, Integer> predicate) {
-        var neighbors = new ArrayList<Cell>(8);
+    public List<Tile> getEightNeighborsAndSelf() {
+        return getNeighbors((r, c) -> true);
+    }
+
+    private List<Tile> getNeighbors(BiPredicate<Integer, Integer> predicate) {
+        var neighbors = new ArrayList<Tile>(8);
         for (int r = row - 1; r <= row + 1; r++) {
             for (int c = col - 1; c <= col + 1; c++) {
                 if (predicate.test(r, c)) {
-                    neighbors.add(new Cell(r, c));
+                    neighbors.add(new Tile(r, c));
                 }
             }
         }
         return neighbors;
     }
 
-    public int getManhattanDistance(Cell c) {
+    public int getManhattanDistance(Tile c) {
         return getManhattanDistance(this, c);
     }
 
-    public static int getManhattanDistance(Cell c1, Cell c2) {
+    public static int getManhattanDistance(Tile c1, Tile c2) {
         return Math.abs(c1.row - c2.row) + Math.abs(c1.col - c2.col);
     }
 
@@ -56,7 +60,7 @@ public class Cell {
         if (o == null || getClass() != o.getClass()) {
             return false;
         }
-        Cell other = (Cell) o;
+        Tile other = (Tile) o;
         return row == other.row && col == other.col;
     }
 
