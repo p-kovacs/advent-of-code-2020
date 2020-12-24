@@ -18,8 +18,7 @@ public class Day17 {
     }
 
     private static long solve(char[][] input, int dim, int cycleCount) {
-        var actives = new HashSet<pkovacs.aoc.util.Point>();
-
+        Set<Point> actives = new HashSet<>();
         for (int row = 0; row < input.length; row++) {
             for (int col = 0; col < input[row].length; col++) {
                 if (input[row][col] == '#') {
@@ -29,17 +28,16 @@ public class Day17 {
         }
 
         for (int c = 0; c < cycleCount; c++) {
-            var newActives = actives.stream()
+            var set = actives;
+            actives = actives.stream()
                     .flatMap(p -> p.getNeighbors(true).stream())
                     .distinct()
                     .filter(p -> {
-                        boolean active = actives.contains(p);
-                        long nc = countActiveNeighbors(actives, p);
-                        return (active && (nc == 2 || nc == 3)) || (!active && nc == 3);
+                        boolean active = set.contains(p);
+                        long cnt = countActiveNeighbors(p, set);
+                        return (active && (cnt == 2 || cnt == 3)) || (!active && cnt == 3);
                     })
                     .collect(Collectors.toSet());
-            actives.clear();
-            actives.addAll(newActives);
         }
 
         return actives.size();
@@ -52,10 +50,8 @@ public class Day17 {
         return new Point(coords);
     }
 
-    private static long countActiveNeighbors(Set<Point> actives, Point point) {
-        return point.getNeighbors().stream()
-                .filter(actives::contains)
-                .count();
+    private static int countActiveNeighbors(Point point, Set<Point> actives) {
+        return (int) point.getNeighbors().stream().filter(actives::contains).count();
     }
 
 }

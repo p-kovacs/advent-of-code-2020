@@ -2,7 +2,6 @@ package pkovacs.aoc;
 
 import java.util.HashSet;
 import java.util.Set;
-import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
 import pkovacs.aoc.util.HexTile;
@@ -27,9 +26,11 @@ public class Day24 {
             var s = set;
             set = set.stream()
                     .flatMap(tile -> tile.getNeighbors(true).stream())
+                    .distinct()
                     .filter(tile -> {
-                        int cnt = countNeighbors(tile, s::contains);
-                        return (s.contains(tile) && (cnt == 1 || cnt == 2)) || (!s.contains(tile) && cnt == 2);
+                        boolean black = s.contains(tile);
+                        int cnt = countBlackNeighbors(tile, s);
+                        return (black && (cnt == 1 || cnt == 2)) || (!black && cnt == 2);
                     }).collect(Collectors.toSet());
         }
         int solution2 = set.size();
@@ -38,8 +39,8 @@ public class Day24 {
         System.out.println("Part 2: " + solution2);
     }
 
-    private static int countNeighbors(HexTile tile, Predicate<HexTile> predicate) {
-        return (int) tile.getNeighbors().stream().filter(predicate).count();
+    private static int countBlackNeighbors(HexTile tile, Set<HexTile> set) {
+        return (int) tile.getNeighbors().stream().filter(set::contains).count();
     }
 
 }
