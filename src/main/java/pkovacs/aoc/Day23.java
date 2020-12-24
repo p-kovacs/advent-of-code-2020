@@ -3,7 +3,6 @@ package pkovacs.aoc;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.google.common.primitives.Ints;
 import pkovacs.aoc.util.InputUtils;
 
 import static java.util.stream.Collectors.joining;

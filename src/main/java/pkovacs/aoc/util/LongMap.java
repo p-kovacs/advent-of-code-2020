@@ -1,9 +1,6 @@
 package pkovacs.aoc.util;
 
 import java.util.HashMap;
-import java.util.function.LongUnaryOperator;
-
-import com.google.common.base.Preconditions;
 
 /**
  * Implements a long-valued map with implicit default value zero.

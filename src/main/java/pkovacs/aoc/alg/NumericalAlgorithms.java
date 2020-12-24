@@ -7,9 +7,6 @@ import java.util.stream.Collectors;
 
 import com.google.common.math.LongMath;
 
-import static java.util.stream.Collectors.toCollection;
-import static java.util.stream.Collectors.toList;
-
 /**
  * Implements basic numerical algorithms.
  */
@@ -56,7 +53,7 @@ public final class NumericalAlgorithms {
 
         // Check that the divisors are pairwise coprime
         for (int i = 0; i < sortedCongruences.size(); i++) {
-            for (int j = i+1; j < sortedCongruences.size(); j++) {
+            for (int j = i + 1; j < sortedCongruences.size(); j++) {
                 checkCoprimeDivisors(sortedCongruences.get(i), sortedCongruences.get(j));
             }
         }

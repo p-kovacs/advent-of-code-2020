@@ -29,7 +29,7 @@ public class PointTest {
 
         assertEquals(54, a.length());
         assertEquals(54, b.length());
-        assertEquals(57, Point.dist(a, new Point(-1,-1,-1)));
+        assertEquals(57, Point.dist(a, new Point(-1, -1, -1)));
 
         assertEquals(new Point(24, 84), Point.add(b, c));
         assertEquals(new Point(0, 0), Point.sub(b, c));
