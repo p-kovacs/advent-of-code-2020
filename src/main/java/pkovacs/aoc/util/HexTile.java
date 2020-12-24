@@ -9,6 +9,8 @@ import java.util.Objects;
  */
 public class HexTile {
 
+    private static String[] DIRECTIONS = new String[] { "w", "e", "nw", "ne", "sw", "se" };
+
     public final int row;
     public final int col;
 
@@ -56,7 +58,7 @@ public class HexTile {
         if (includeSelf) {
             neighbors.add(this);
         }
-        for (var dir : new String[] { "w", "e", "nw", "ne", "sw", "se" }) {
+        for (var dir : DIRECTIONS) {
             neighbors.add(getNeighbor(dir));
         }
         return neighbors;
