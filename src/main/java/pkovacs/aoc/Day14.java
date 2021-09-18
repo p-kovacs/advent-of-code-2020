@@ -3,8 +3,8 @@ package pkovacs.aoc;
 import java.util.ArrayList;
 import java.util.List;
 
+import pkovacs.aoc.util.CounterMap;
 import pkovacs.aoc.util.InputUtils;
-import pkovacs.aoc.util.LongMap;
 
 public class Day14 {
 
@@ -17,7 +17,7 @@ public class Day14 {
 
     private static long solvePuzzle(List<String> lines, boolean second) {
         var mask = "";
-        var mem = new LongMap<Long>();
+        var mem = new CounterMap<Long>();
         for (String line : lines) {
             if (line.startsWith("mask")) {
                 mask = line.split(" = ")[1];

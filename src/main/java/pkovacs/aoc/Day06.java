@@ -1,7 +1,7 @@
 package pkovacs.aoc;
 
+import pkovacs.aoc.util.CounterMap;
 import pkovacs.aoc.util.InputUtils;
-import pkovacs.aoc.util.LongMap;
 
 public class Day06 {
 
@@ -11,10 +11,10 @@ public class Day06 {
         long sum1 = 0;
         long sum2 = 0;
         for (var block : blocks) {
-            var map = new LongMap<Byte>();
+            var map = new CounterMap<Byte>();
             for (String line : block) {
                 for (byte b : line.getBytes()) {
-                    map.incrementAndGet(b);
+                    map.inc(b);
                 }
             }
             sum1 += map.size();
