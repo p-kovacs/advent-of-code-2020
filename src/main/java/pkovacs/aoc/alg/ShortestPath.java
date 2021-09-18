@@ -8,7 +8,7 @@ import java.util.Optional;
 import java.util.function.Function;
 import java.util.function.Predicate;
 
-import pkovacs.aoc.util.Pair;
+import org.apache.commons.lang3.tuple.Pair;
 
 /**
  * Implements a general shortest path algorithm, which is a more efficient version of the classic Bellman-Ford
@@ -55,8 +55,8 @@ public final class ShortestPath {
             T node = queue.poll();
             var result = results.get(node);
             for (var edge : edgeProvider.apply(node)) {
-                var neighbor = edge.first;
-                var dist = result.getDist() + edge.second;
+                var neighbor = edge.getKey();
+                var dist = result.getDist() + edge.getValue();
                 var current = results.get(neighbor);
                 if (current == null || dist < current.getDist()) {
                     results.put(neighbor, new PathResult<>(neighbor, dist, targetPredicate.test(neighbor), result));

@@ -8,20 +8,6 @@ import static org.junit.jupiter.api.Assertions.assertNotEquals;
 public class PairTest {
 
     @Test
-    public void testGeneralPair() {
-        var p = new Pair<>("hello", 42);
-        var q = new Pair<>(42, "hello");
-        var r = new Pair<>(42, "hello");
-
-        assertNotEquals(p, q);
-        assertEquals(q, r);
-
-        assertEquals("hello", p.first);
-        assertEquals(p.first, q.second);
-        assertEquals(p.second, q.first);
-    }
-
-    @Test
     public void testIntPair() {
         var p = new IntPair(123, 42);
         var q = new IntPair(42, 123);
