@@ -7,8 +7,8 @@ import java.util.Objects;
  */
 public class LongPair {
 
-    public final long a;
-    public final long b;
+    private final long a;
+    private final long b;
 
     public LongPair(long a, long b) {
         this.a = a;

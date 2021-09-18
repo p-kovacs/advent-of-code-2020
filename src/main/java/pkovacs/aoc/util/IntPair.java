@@ -7,8 +7,8 @@ import java.util.Objects;
  */
 public class IntPair {
 
-    public final int a;
-    public final int b;
+    private final int a;
+    private final int b;
 
     public IntPair(int a, int b) {
         this.a = a;

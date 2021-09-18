@@ -25,16 +25,16 @@ public class BfsTest {
 
         var result = Bfs.run(new IntPair(0, 0), state -> {
             var list = new ArrayList<IntPair>();
-            list.add(new IntPair(3, state.b)); // 3-liter jug <-- fountain
-            list.add(new IntPair(state.a, 5)); // 5-liter jug <-- fountain
-            list.add(new IntPair(0, state.b)); // 3-liter jug --> fountain
-            list.add(new IntPair(state.a, 0)); // 5-liter jug --> fountain
-            int d1 = Math.min(3 - state.a, state.b);
-            list.add(new IntPair(state.a + d1, state.b - d1)); // 3-liter jug <-- 5-liter jug
-            int d2 = Math.min(5 - state.b, state.a);
-            list.add(new IntPair(state.a - d2, state.b + d2)); // 3-liter jug --> 5-liter jug
+            list.add(new IntPair(3, state.b())); // 3-liter jug <-- fountain
+            list.add(new IntPair(state.a(), 5)); // 5-liter jug <-- fountain
+            list.add(new IntPair(0, state.b())); // 3-liter jug --> fountain
+            list.add(new IntPair(state.a(), 0)); // 5-liter jug --> fountain
+            int d1 = Math.min(3 - state.a(), state.b());
+            list.add(new IntPair(state.a() + d1, state.b() - d1)); // 3-liter jug <-- 5-liter jug
+            int d2 = Math.min(5 - state.b(), state.a());
+            list.add(new IntPair(state.a() - d2, state.b() + d2)); // 3-liter jug --> 5-liter jug
             return list;
-        }, pair -> pair.b == 4);
+        }, pair -> pair.b() == 4);
 
         assertTrue(result.isPresent());
         assertEquals(6, result.get().getDist());
