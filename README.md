@@ -1,12 +1,16 @@
 # Advent of Code 2020
+
 Solutions for puzzles of "Advent of Code 2020", written in Java 11.
 
-Visit [https://adventofcode.com/2020](https://adventofcode.com/2020) for the puzzle descriptions.
+Visit https://adventofcode.com/2020 for the puzzle descriptions.
 
 ## How to use
+
 Execute `./gradlew run -Pday=<number>` to run the solution for the given day. For example, `./gradlew run -Pday=3`.
 
-You will need Java 11 or newer specified in `JAVA_HOME`.
+Java 11 (or newer) is required to be specified in `JAVA_HOME`.
 
 ## Input files
-For each day, the corresponding input files in `src/main/resources` contain my personal input data. You can replace them with your own ones.
+
+For each day, the corresponding input files in `src/main/resources` contain my personal input data.
+You can replace them with your own ones.
