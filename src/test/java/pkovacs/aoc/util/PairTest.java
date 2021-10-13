@@ -21,18 +21,4 @@ public class PairTest {
         assertEquals(p.b(), q.a());
     }
 
-    @Test
-    public void testLongPair() {
-        var p = new LongPair(123_456_789_000L, 42);
-        var q = new LongPair(42, 123_456_789_000L);
-        var r = new LongPair(42, 123_456_789_000L);
-
-        assertNotEquals(p, q);
-        assertEquals(q, r);
-
-        assertEquals(123456789000L, p.a());
-        assertEquals(p.a(), q.b());
-        assertEquals(p.b(), q.a());
-    }
-
 }
