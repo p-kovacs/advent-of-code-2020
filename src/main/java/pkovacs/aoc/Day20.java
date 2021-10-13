@@ -20,13 +20,11 @@ import static java.util.stream.Collectors.toMap;
 
 public class Day20 {
 
-    private static final char[][] SEA_MONSTER = new char[3][20];
-
-    static {
-        "                  # ".getChars(0, 20, SEA_MONSTER[0], 0);
-        "#    ##    ##    ###".getChars(0, 20, SEA_MONSTER[1], 0);
-        " #  #  #  #  #  #   ".getChars(0, 20, SEA_MONSTER[2], 0);
-    }
+    private static final char[][] SEA_MONSTER = new char[][] {
+            "                  # ".toCharArray(),
+            "#    ##    ##    ###".toCharArray(),
+            " #  #  #  #  #  #   ".toCharArray(),
+    };
 
     public static void main(String[] args) {
         var blocks = InputUtils.readLineBlocks("day20.txt");
