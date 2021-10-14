@@ -29,5 +29,6 @@ static def getClassName(day) {
     if (!day) {
         return null
     }
-    'pkovacs.aoc.Day' + (day.length() == 1 ? "0${day}" : day)
+    'pkovacs.aoc.y2020.Day' + (day.length() == 1 ? "0${day}" : day)
 }
+
