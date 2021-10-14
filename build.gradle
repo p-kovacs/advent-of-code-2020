@@ -21,7 +21,7 @@ test {
 }
 
 task run(type: JavaExec) {
-    main = getClassName(project.findProperty('day'))
+    mainClass = getClassName(project.findProperty('day'))
     classpath = sourceSets.main.runtimeClasspath
 }
 
