@@ -1,8 +1,8 @@
 # Advent of Code 2020
 
-Solutions for puzzles of "Advent of Code 2020", written in Java 11.
+Solutions for the puzzles of [Advent of Code 2020](https://adventofcode.com/2020), written in Java.
 
-Visit https://adventofcode.com/2020 for the puzzle descriptions.
+The general utilities and algorithms used in the solutions are also available in a separate repository: https://github.com/p-kovacs/java-utils.
 
 ## How to use
 
@@ -17,5 +17,10 @@ You can replace them with your own ones.
 
 ## Notes on the puzzles
 
-* More challenging ones: Day 7, Day 13, Day 19, Day 23
-* Challenging and cumbersome: Day 20
+* More challenging ones:
+[Day 7](https://adventofcode.com/2020/day/7),
+[Day 13](https://adventofcode.com/2020/day/13),
+[Day 19](https://adventofcode.com/2020/day/19),
+[Day 23](https://adventofcode.com/2020/day/23)
+* Challenging and cumbersome:
+[Day 20](https://adventofcode.com/2020/day/20)
