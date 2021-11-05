@@ -6,7 +6,7 @@ import java.util.Objects;
  * Represents a 2-dimensional mutable vector with integer (long) coordinates and Manhattan distance.
  * <p>
  * The coordinates are interpreted as usual in Math: (0,1) means "north", (0,-1) means "south",
- * (1,0) means "east", and (0,1) means "west".
+ * (1,0) means "east", and (-1,0) means "west".
  */
 public class Vector {
 
