@@ -2,7 +2,8 @@
 
 Solutions for the puzzles of [Advent of Code 2020](https://adventofcode.com/2020), written in Java.
 
-The general utilities and algorithms used in the solutions are also available in a separate repository: https://github.com/p-kovacs/java-utils.
+The general utilities and algorithms used in the solutions are also available in a separate repository:
+https://github.com/p-kovacs/java-puzzle-utils
 
 ## How to use
 
