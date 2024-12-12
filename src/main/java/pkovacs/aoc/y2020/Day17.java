@@ -10,7 +10,7 @@ import pkovacs.aoc.util.Point;
 public class Day17 {
 
     public static void main(String[] args) {
-        var input = InputUtils.readCharMatrix("y2020/day17.txt");
+        var input = InputUtils.readCharMatrix("day17.txt");
 
         int cycleCount = 6;
         System.out.println("Part 1: " + solve(input, 3, cycleCount));

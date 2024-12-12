@@ -1,16 +1,13 @@
 package pkovacs.aoc.y2020;
 
 import java.util.List;
-import java.util.stream.IntStream;
 
 import pkovacs.aoc.util.InputUtils;
-
-import static java.util.stream.Collectors.toList;
 
 public class Day13 {
 
     public static void main(String[] args) {
-        List<String> lines = InputUtils.readLines("y2020/day13.txt");
+        List<String> lines = InputUtils.readLines("day13.txt");
 
         long timestamp = Long.parseLong(lines.get(0));
         long[] buses = readBusArray(lines.get(1));

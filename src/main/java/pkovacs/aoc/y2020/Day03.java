@@ -5,7 +5,7 @@ import pkovacs.aoc.util.InputUtils;
 public class Day03 {
 
     public static void main(String[] args) {
-        char[][] map = InputUtils.readCharMatrix("y2020/day03.txt");
+        char[][] map = InputUtils.readCharMatrix("day03.txt");
 
         System.out.println("Part 1: " + solve(map, new int[] { 3 }, new int[] { 1 }));
         System.out.println("Part 2: " + solve(map, new int[] { 1, 3, 5, 7, 1 }, new int[] { 1, 1, 1, 1, 2 }));

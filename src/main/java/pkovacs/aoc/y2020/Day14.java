@@ -9,7 +9,7 @@ import pkovacs.aoc.util.InputUtils;
 public class Day14 {
 
     public static void main(String[] args) {
-        List<String> lines = InputUtils.readLines("y2020/day14.txt");
+        List<String> lines = InputUtils.readLines("day14.txt");
 
         System.out.println("Part 1: " + solvePuzzle(lines, false));
         System.out.println("Part 2: " + solvePuzzle(lines, true));

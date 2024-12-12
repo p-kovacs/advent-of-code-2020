@@ -10,7 +10,7 @@ import pkovacs.aoc.util.InputUtils;
 public class Day24 {
 
     public static void main(String[] args) {
-        var lines = InputUtils.readLines("y2020/day24.txt");
+        var lines = InputUtils.readLines("day24.txt");
 
         Set<HexTile> set = new HashSet<>();
         var center = new HexTile(0, 0);

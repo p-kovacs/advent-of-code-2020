@@ -1,3 +1,26 @@
-/.gradle
-/.idea
-/build
+# Gradle
+.gradle/
+build/
+
+# IDEA
+.idea/
+out/
+*.iml
+*.ipr
+*.iws
+
+# Eclipse
+.project
+.classpath
+.settings
+.apt_generated
+.factorypath
+.metadata
+bin/
+
+# Mac
+.DS_Store
+
+# Personal files
+input/day*.txt
+input/session.txt

@@ -12,7 +12,7 @@ import pkovacs.aoc.util.InputUtils;
 public class Day16 {
 
     public static void main(String[] args) {
-        var lines = InputUtils.readLineBlocks("y2020/day16.txt");
+        var lines = InputUtils.readLineBlocks("day16.txt");
 
         // Read rules
         var rules = new HashMap<String, int[]>();

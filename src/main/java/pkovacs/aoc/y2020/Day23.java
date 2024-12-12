@@ -10,7 +10,7 @@ import static java.util.stream.Collectors.joining;
 public class Day23 {
 
     public static void main(String[] args) {
-        var lines = InputUtils.readLines("y2020/day23.txt");
+        var lines = InputUtils.readLines("day23.txt");
 
         var list = new ArrayList<Integer>();
         for (int i = 0; i < lines.get(0).length(); i++) {

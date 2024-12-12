@@ -7,7 +7,7 @@ import pkovacs.aoc.util.InputUtils;
 public class Day15 {
 
     public static void main(String[] args) {
-        var numbers = InputUtils.readInts("y2020/day15.txt");
+        var numbers = InputUtils.readInts("day15.txt");
 
         System.out.println("Part 1: " + solve(numbers, 2020));
         System.out.println("Part 2: " + solve(numbers, 30000000));

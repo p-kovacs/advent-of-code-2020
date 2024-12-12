@@ -18,7 +18,7 @@ import static java.util.stream.Collectors.toSet;
 public class Day21 {
 
     public static void main(String[] args) {
-        var lines = InputUtils.readLines("y2020/day21.txt");
+        var lines = InputUtils.readLines("day21.txt");
 
         // Process input
         var ingsPerLine = new ArrayList<Set<String>>();

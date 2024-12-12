@@ -8,7 +8,7 @@ import pkovacs.aoc.util.InputUtils;
 public class Day09 {
 
     public static void main(String[] args) {
-        var x = InputUtils.readLongs("y2020/day09.txt");
+        var x = InputUtils.readLongs("day09.txt");
 
         int preambleSize = 25;
         int index = IntStream.range(preambleSize, x.length)
