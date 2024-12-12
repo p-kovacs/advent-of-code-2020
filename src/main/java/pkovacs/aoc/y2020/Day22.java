@@ -14,7 +14,7 @@ import static java.util.stream.Collectors.toList;
 public class Day22 {
 
     public static void main(String[] args) {
-        var blocks = InputUtils.readLineBlocks("y2020/day22.txt");
+        var blocks = InputUtils.readLineBlocks("day22.txt");
 
         var deck1 = IntStream.range(1, blocks.get(0).length)
                 .mapToObj(i -> Integer.parseInt(blocks.get(0)[i]))

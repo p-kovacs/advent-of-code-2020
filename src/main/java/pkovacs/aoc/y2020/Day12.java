@@ -8,7 +8,7 @@ import pkovacs.aoc.util.Vector;
 public class Day12 {
 
     public static void main(String[] args) {
-        List<String> lines = InputUtils.readLines("y2020/day12.txt");
+        List<String> lines = InputUtils.readLines("day12.txt");
 
         System.out.println("Part 1: " + solvePuzzle(lines, false));
         System.out.println("Part 2: " + solvePuzzle(lines, true));

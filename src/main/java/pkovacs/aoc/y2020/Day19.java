@@ -9,7 +9,7 @@ import pkovacs.aoc.util.InputUtils;
 public class Day19 {
 
     public static void main(String[] args) {
-        var blocks = InputUtils.readLineBlocks("y2020/day19.txt");
+        var blocks = InputUtils.readLineBlocks("day19.txt");
 
         // Read rules, convert them to RegEx (spaces are preserved yet)
         var rules = new HashMap<String, String>();

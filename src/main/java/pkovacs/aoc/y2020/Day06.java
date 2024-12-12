@@ -6,7 +6,7 @@ import pkovacs.aoc.util.InputUtils;
 public class Day06 {
 
     public static void main(String[] args) {
-        var blocks = InputUtils.readLineBlocks("y2020/day06.txt");
+        var blocks = InputUtils.readLineBlocks("day06.txt");
 
         long sum1 = 0;
         long sum2 = 0;

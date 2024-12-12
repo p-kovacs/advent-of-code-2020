@@ -27,7 +27,7 @@ public class Day20 {
     };
 
     public static void main(String[] args) {
-        var blocks = InputUtils.readLineBlocks("y2020/day20.txt");
+        var blocks = InputUtils.readLineBlocks("day20.txt");
 
         // Read input, generate all transformed tiles
         int n = 0;

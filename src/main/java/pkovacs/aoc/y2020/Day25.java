@@ -5,7 +5,7 @@ import pkovacs.aoc.util.InputUtils;
 public class Day25 {
 
     public static void main(String[] args) {
-        var lines = InputUtils.readLines("y2020/day25.txt");
+        var lines = InputUtils.readLines("day25.txt");
 
         long pk1 = Long.parseLong(lines.get(0));
         long pk2 = Long.parseLong(lines.get(1));

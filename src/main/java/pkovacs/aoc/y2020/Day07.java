@@ -14,7 +14,7 @@ import pkovacs.aoc.util.InputUtils;
 public class Day07 {
 
     public static void main(String[] args) {
-        List<String> lines = InputUtils.readLines("y2020/day07.txt");
+        List<String> lines = InputUtils.readLines("day07.txt");
 
         ListMultimap<String, String> tree = MultimapBuilder.hashKeys().arrayListValues().build();
         SetMultimap<String, String> revTree = MultimapBuilder.hashKeys().hashSetValues().build();

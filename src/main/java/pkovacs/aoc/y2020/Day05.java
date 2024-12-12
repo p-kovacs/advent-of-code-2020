@@ -8,7 +8,7 @@ import pkovacs.aoc.util.InputUtils;
 public class Day05 {
 
     public static void main(String[] args) {
-        List<String> lines = InputUtils.readLines("y2020/day05.txt");
+        List<String> lines = InputUtils.readLines("day05.txt");
 
         int[] seatIds = lines.stream().mapToInt(Day05::getSeatId).sorted().toArray();
 

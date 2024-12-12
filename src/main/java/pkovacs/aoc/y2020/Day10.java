@@ -9,7 +9,7 @@ import pkovacs.aoc.util.InputUtils;
 public class Day10 {
 
     public static void main(String[] args) {
-        List<String> lines = InputUtils.readLines("y2020/day10.txt");
+        List<String> lines = InputUtils.readLines("day10.txt");
 
         var x = new long[lines.size() + 2];
         for (int i = 0; i < lines.size(); i++) {

@@ -5,7 +5,7 @@ import pkovacs.aoc.util.InputUtils;
 public class Day01 {
 
     public static void main(String[] args) {
-        var data = InputUtils.readLongs("y2020/day01.txt");
+        var data = InputUtils.readLongs("day01.txt");
 
         long solution1 = 0;
         long solution2 = 0;

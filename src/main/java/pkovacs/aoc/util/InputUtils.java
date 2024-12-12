@@ -107,7 +107,7 @@ public final class InputUtils {
     }
 
     private static Path getPath(String fileName) {
-        return Path.of(InputUtils.class.getResource("../" + fileName).getPath());
+        return Path.of("input", fileName);
     }
 
     /**
