@@ -5,7 +5,7 @@ import java.util.Set;
 import java.util.stream.Collectors;
 
 import com.github.pkovacs.aoc.util.InputUtils;
-import com.github.pkovacs.aoc.util.Point;
+import com.github.pkovacs.aoc.util.Vector;
 
 public class Day17 {
 
@@ -18,11 +18,11 @@ public class Day17 {
     }
 
     private static long solve(char[][] input, int dim, int cycleCount) {
-        Set<Point> actives = new HashSet<>();
+        Set<Vector> actives = new HashSet<>();
         for (int row = 0; row < input.length; row++) {
             for (int col = 0; col < input[row].length; col++) {
                 if (input[row][col] == '#') {
-                    actives.add(createPoint(dim, col, row));
+                    actives.add(createVector(dim, col, row));
                 }
             }
         }
@@ -30,7 +30,7 @@ public class Day17 {
         for (int c = 0; c < cycleCount; c++) {
             var set = actives;
             actives = actives.stream()
-                    .flatMap(p -> p.getNeighbors(true).stream())
+                    .flatMap(p -> p.getNeighborsAndSelf().stream())
                     .distinct()
                     .filter(p -> {
                         boolean active = set.contains(p);
@@ -43,15 +43,15 @@ public class Day17 {
         return actives.size();
     }
 
-    private static Point createPoint(int dim, int x, int y) {
+    private static Vector createVector(int dim, int x, int y) {
         var coords = new int[dim];
         coords[0] = x;
         coords[1] = y;
-        return new Point(coords);
+        return new Vector(coords);
     }
 
-    private static int countActiveNeighbors(Point point, Set<Point> actives) {
-        return (int) point.getNeighbors().stream().filter(actives::contains).count();
+    private static int countActiveNeighbors(Vector vector, Set<Vector> actives) {
+        return (int) vector.getNeighbors().stream().filter(actives::contains).count();
     }
 
 }

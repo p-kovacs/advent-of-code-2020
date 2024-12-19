@@ -7,7 +7,6 @@ import java.util.List;
 import java.util.stream.IntStream;
 
 import com.github.pkovacs.aoc.util.InputUtils;
-import com.github.pkovacs.aoc.util.IntPair;
 
 import static java.util.stream.Collectors.toList;
 
@@ -23,11 +22,11 @@ public class Day22 {
                 .mapToObj(i -> Integer.parseInt(blocks.get(1)[i]))
                 .collect(toList());
 
-        System.out.println("Part 1: " + solve(deck1, deck2, false).b());
-        System.out.println("Part 2: " + solve(deck1, deck2, true).b());
+        System.out.println("Part 1: " + solve(deck1, deck2, false).score);
+        System.out.println("Part 2: " + solve(deck1, deck2, true).score);
     }
 
-    public static IntPair solve(List<Integer> d1, List<Integer> d2, boolean recursive) {
+    public static Solution solve(List<Integer> d1, List<Integer> d2, boolean recursive) {
         var deck1 = new ArrayDeque<>(d1);
         var deck2 = new ArrayDeque<>(d2);
 
@@ -44,9 +43,9 @@ public class Day22 {
 
             boolean p1wins = top1 > top2;
             if (recursive && top1 <= deck1.size() && top2 <= deck2.size()) {
-                var pair = solve(List.copyOf(deck1).subList(0, top1),
+                var solution = solve(List.copyOf(deck1).subList(0, top1),
                         List.copyOf(deck2).subList(0, top2), true);
-                p1wins = pair.a() == 1;
+                p1wins = solution.winner == 1;
             }
 
             if (p1wins) {
@@ -62,7 +61,9 @@ public class Day22 {
         var winnerDeck = new ArrayList<>(deck1.isEmpty() ? deck2 : deck1);
         var score = IntStream.range(0, winnerDeck.size())
                 .map(i -> winnerDeck.get(i) * (winnerDeck.size() - i)).sum();
-        return new IntPair(winner, score);
+        return new Solution(winner, score);
     }
+
+    private record Solution(int winner, int score) {}
 
 }
