@@ -11,7 +11,7 @@ public class Day25 {
         long pk2 = Long.parseLong(lines.get(1));
 
         System.out.println("Part 1: " + encrypt(pk2, findLoopSize(pk1)));
-        System.out.println("Part 2: ");
+        System.out.println("Part 2: " + 0);
     }
 
     private static int findLoopSize(long key) {
