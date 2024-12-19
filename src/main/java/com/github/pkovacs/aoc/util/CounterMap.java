@@ -12,7 +12,7 @@ import java.util.stream.LongStream;
  * {@code null} for a key that is not contained by the map explicitly. Use {@link #getValue(Object)} when you
  * would like to exploit the default value.
  */
-public class CounterMap<K> extends HashMap<K, Long> {
+public final class CounterMap<K> extends HashMap<K, Long> {
 
     public CounterMap() {
         super();

@@ -3,7 +3,6 @@ package com.github.pkovacs.aoc.y2020;
 import java.util.List;
 
 import com.github.pkovacs.aoc.util.InputUtils;
-import com.github.pkovacs.aoc.util.Vector;
 
 public class Day12 {
 
@@ -15,47 +14,53 @@ public class Day12 {
     }
 
     private static long solvePuzzle(List<String> lines, boolean second) {
-        var ship = new Position(0, 0);
-        var waypoint = second ? new Position(10, 1) : new Position(1, 0);
+        var ship = new Pos(0, 0);
+        var waypoint = second ? new Pos(10, 1) : new Pos(1, 0);
         for (var line : lines) {
             char ch = line.charAt(0);
             int v = Integer.parseInt(line.substring(1));
             if (ch == 'F') {
-                ship.add(waypoint.x * v, waypoint.y * v);
+                ship = ship.add(waypoint.x * v, waypoint.y * v);
             } else if (ch == 'N' || ch == 'S' || ch == 'E' || ch == 'W') {
-                (second ? waypoint : ship).move(ch, v);
+                if (second) {
+                    waypoint = waypoint.move(ch, v);
+                } else {
+                    ship = ship.move(ch, v);
+                }
             } else if (ch == 'L' || ch == 'R') {
-                waypoint.rotate(ch, v);
+                waypoint = waypoint.rotate(ch, v);
             }
         }
-        return ship.length();
+        return Math.abs(ship.x) + Math.abs(ship.y);
     }
 
-    private static class Position extends Vector {
+    private record Pos(long x, long y) {
 
-        public Position(long x, long y) {
-            super(x, y);
+        Pos move(char dir, int value) {
+            return switch (dir) {
+                case 'N' -> new Pos(x, y + value);
+                case 'S' -> new Pos(x, y - value);
+                case 'E' -> new Pos(x + value, y);
+                case 'W' -> new Pos(x - value, y);
+                default -> throw new IllegalArgumentException("Unknown direction.");
+            };
         }
 
-        void move(char dir, int value) {
-            if (dir == 'N') {
-                y += value;
-            } else if (dir == 'S') {
-                y -= value;
-            } else if (dir == 'E') {
-                x += value;
-            } else if (dir == 'W') {
-                x -= value;
-            } else {
-                throw new IllegalArgumentException("Unknown direction for move: " + dir);
-            }
+        Pos add(long dx, long dy) {
+            return new Pos(x + dx, y + dy);
         }
 
-        void rotate(char dir, int degree) {
+        Pos rotate(char dir, int degree) {
             int rightTurns = (dir == 'R' ? degree : 360 - degree) / 90;
+            Pos p = this;
             for (int i = 0; i < rightTurns; i++) {
-                rotateRight();
+                p = p.rotateRight();
             }
+            return p;
+        }
+
+        Pos rotateRight() {
+            return new Pos(y, -x);
         }
 
     }

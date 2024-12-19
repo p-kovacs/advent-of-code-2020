@@ -1,70 +1,60 @@
 package com.github.pkovacs.aoc.util;
 
-import java.util.Objects;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
+import com.google.common.math.LongMath;
 
 /**
- * Represents a 2-dimensional mutable vector with integer (long) coordinates and Manhattan distance.
- * <p>
- * The coordinates are interpreted as usual in Math: (0,1) means "north", (0,-1) means "south",
- * (1,0) means "east", and (-1,0) means "west".
+ * Represents a point in D-dimensional (D >= 1) space with integer coordinates and Manhattan distance.
  */
-public class Vector {
+public final class Vector {
 
-    public long x;
-    public long y;
+    private final int[] coordinates;
 
-    public Vector(long x, long y) {
-        this.x = x;
-        this.y = y;
+    public Vector(int... coordinates) {
+        this.coordinates = coordinates;
     }
 
-    public Vector(Vector v) {
-        this(v.x, v.y);
+    public int dim() {
+        return coordinates.length;
     }
 
-    public void set(long x, long y) {
-        this.x = x;
-        this.y = y;
+    public int get(int k) {
+        return coordinates[k];
     }
 
-    public void set(Vector v) {
-        set(v.x, v.y);
+    public int dist() {
+        return Arrays.stream(coordinates).map(Math::abs).sum();
     }
 
-    public void add(long dx, long dy) {
-        set(x + dx, y + dy);
+    public List<Vector> getNeighbors() {
+        return getNeighbors(false);
     }
 
-    public void add(Vector v) {
-        add(v.x, v.y);
+    public List<Vector> getNeighborsAndSelf() {
+        return getNeighbors(true);
     }
 
-    public void neg() {
-        set(-x, -y);
+    private List<Vector> getNeighbors(boolean includeSelf) {
+        int dim = coordinates.length;
+        var result = new ArrayList<Vector>((int) LongMath.pow(3, dim));
+        result.add(this);
+        for (int k = 0; k < dim; k++) {
+            for (int i = 0, origSize = result.size(); i < origSize; i++) {
+                var p = result.get(i);
+                result.add(p.changeCoordinate(k, -1));
+                result.add(p.changeCoordinate(k, 1));
+            }
+        }
+        return includeSelf ? result : result.subList(1, result.size());
     }
 
-    public void rotateRight() {
-        set(y, -x);
-    }
-
-    public void rotateLeft() {
-        set(-y, x);
-    }
-
-    public long length() {
-        return Math.abs(x) + Math.abs(y);
-    }
-
-    public static Vector add(Vector a, Vector b) {
-        return new Vector(a.x + b.x, a.y + b.y);
-    }
-
-    public static Vector sub(Vector a, Vector b) {
-        return new Vector(a.x - b.x, a.y - b.y);
-    }
-
-    public static long dist(Vector a, Vector b) {
-        return sub(a, b).length();
+    private Vector changeCoordinate(int k, int delta) {
+        int[] c = coordinates.clone();
+        c[k] += delta;
+        return new Vector(c);
     }
 
     @Override
@@ -72,18 +62,17 @@ public class Vector {
         if (o == null || getClass() != o.getClass()) {
             return false;
         }
-        Vector other = (Vector) o;
-        return x == other.x && y == other.y;
+        return Arrays.equals(coordinates, ((Vector) o).coordinates);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(x, y);
+        return Arrays.hashCode(coordinates);
     }
 
     @Override
     public String toString() {
-        return "(" + x + "," + y + ")";
+        return Arrays.toString(coordinates);
     }
 
 }

@@ -24,11 +24,9 @@ public class Day23 {
     private static String solve(List<Integer> input, boolean advanced) {
         List<Integer> list = play(input, advanced);
 
-        if (advanced) {
-            return String.valueOf((long) list.get(0) * list.get(1));
-        } else {
-            return list.stream().map(String::valueOf).collect(joining(""));
-        }
+        return advanced
+                ? String.valueOf((long) list.get(0) * list.get(1))
+                : list.stream().map(String::valueOf).collect(joining(""));
     }
 
     private static List<Integer> play(List<Integer> input, boolean advanced) {

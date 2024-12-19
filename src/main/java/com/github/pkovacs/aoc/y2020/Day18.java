@@ -77,12 +77,10 @@ public class Day18 {
         int precStep = advanced ? 2 : 1;
         var expr = expression.replace(" ", "").toCharArray();
         for (char c : expr) {
-            if (c == '(') {
-                prec += precStep;
-            } else if (c == ')') {
-                prec -= precStep;
-            } else {
-                list.add(new Token(c, prec + (advanced && c == '+' ? 1 : 0)));
+            switch (c) {
+                case '(' -> prec += precStep;
+                case ')' -> prec -= precStep;
+                default -> list.add(new Token(c, prec + (advanced && c == '+' ? 1 : 0)));
             }
         }
 
@@ -126,13 +124,11 @@ public class Day18 {
         }
 
         static Token eval(Token a, Token op, Token b) {
-            if (op.operator == '+') {
-                return new Token(a.value + b.value);
-            } else if (op.operator == '*') {
-                return new Token(a.value * b.value);
-            } else {
-                throw new IllegalArgumentException();
-            }
+            return switch (op.operator) {
+                case '+' -> new Token(a.value + b.value);
+                case '*' -> new Token(a.value * b.value);
+                default -> throw new IllegalArgumentException();
+            };
         }
 
         @Override
